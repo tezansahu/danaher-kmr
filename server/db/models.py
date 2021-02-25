@@ -2,7 +2,8 @@ import uuid
 
 from sqlalchemy import Column, Integer, String, Boolean, Date, ARRAY, ForeignKey
 from sqlalchemy.schema import Sequence
-from database import Base
+from sqlalchemy.orm import relationship
+from .database import Base
 
 class User(Base):
     __tablename__ = "users"
@@ -28,4 +29,3 @@ class File(Base):
     created_on = Column(Date, index=True, nullable=False)
     in_trash = Column(Boolean, index=True)
     delete_on = Column(Date, index=True)
-    # tags = Column(ARRAY(String(100)))
