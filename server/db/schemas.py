@@ -25,6 +25,10 @@ class UserInfo(UserInfoBase):
     class Config:
         orm_mode =  True
 
+class UserPasswdUpdate(UserInfoBase):
+    old_passwd_hashed: str
+    new_passwd_hashed: str
+
 ###########################################
 ########### File-related Schemas ##########
 ###########################################

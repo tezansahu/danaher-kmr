@@ -20,3 +20,22 @@ def create_user(db: Session, user: schemas.UserRegister):
     db.commit()
     db.refresh(db_user)
     return db_user
+
+def update_user_passwd(db: Session, email_id: str, new_passwd_hashed: str):
+    db_user = db.query(models.User).filter(models.User.email_id == email_id).first()
+    db_user.passwd_hashed = new_passwd_hashed
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
+
+def update_user_info(db: Session, user: schemas.UserInfo):
+    db_user = db.query(models.User).filter(models.User.id == user.id).first()
+     
+    # Only Operating Company & Contact Number of a user can be updated
+    db_user.op_co = user.op_co
+    db_user.contact_no = user.contact_no
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
