@@ -7,17 +7,18 @@ from pydantic import BaseModel
 
 class UserInfoBase(BaseModel):
     email_id: str
-    name: str
 
 class UserLogin(UserInfoBase):
     passwd_hashed: str
 
 class UserRegister(UserLogin):
+    name: str
     op_co: str
     contact_no: Optional[str] = None
 
 class UserInfo(UserInfoBase):
     id: int
+    name: str
     op_co: str
     contact_no: Optional[str] = None
 
