@@ -92,7 +92,7 @@ async def create_folder(folder: schemas.FileBase, db: Session = Depends(get_db))
     return crud.create_file(db=db, f=new_folder)
 
 
-@router.put("/rename", response_model=schemas.FileInfo)
+@router.patch("/rename", response_model=schemas.FileInfo)
 def rename_folder(folder: schemas.FileRename, db: Session = Depends(get_db)):
     db_folder = crud.get_file_by_id(db, id=folder.id)
     # Check if the folder exists

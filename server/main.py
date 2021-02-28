@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 
 from db import models, schemas, crud
-from db.database import engine, SessionLocal
+from db.database import engine, SessionLocal, Base
 from routers import users, folders, files, trash
 
 import os
@@ -51,8 +51,9 @@ async def reset_db():
             # Initialize the database with dummy values
             db = SessionLocal()
             print("Deleting all folders, files and users")
-            db.query(models.User).delete()
-            db.query(models.File).delete()
+            Base.metadata.drop_all(bind=engine, tables=[models.File.__table__, models.User.__table__])
+            models.Base.metadata.create_all(bind=engine)
+
             if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), "kmr_storage")):
                 shutil.rmtree(os.path.join(os.path.dirname(os.path.abspath(__file__)), "kmr_storage"))
             user = None
@@ -72,7 +73,6 @@ async def reset_db():
                         contact_no=fake.unique.phone_number()
                     )
                 )
-                print(user.__dict__)
             db.commit()
 
             # Populate `files` table with 1 root folder & 1 event folder created by `user`
@@ -110,7 +110,7 @@ async def reset_db():
             db.commit()
 
             print("Creating dummy file in event folder...")
-            abs_path = os.path.join(abs_path, "Event_1", "test_file.txt")
+            abs_path = os.path.join(abs_path, "test_file.txt")
             with open(abs_path, "w") as f:
                 f.write("This is a dummy file for testing")
             

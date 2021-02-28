@@ -33,7 +33,7 @@ def get_trash_for_user(user_id: int, db: Session = Depends(get_db)):
     return crud.get_trash_for_user(db, user_id)
 
 
-@router.put("/add", response_model=TrashStatus)
+@router.patch("/add", response_model=TrashStatus)
 def add_to_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
     db_f = crud.get_file_by_id(db, id=f.id)
     if not db_f or db_f.in_trash:
@@ -48,7 +48,7 @@ def add_to_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
         return crud.add_file_to_trash(db, f.id)
 
 
-@router.put("/restore", response_model=TrashStatus)
+@router.patch("/restore", response_model=TrashStatus)
 def restore_from_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
     db_f = crud.get_file_by_id(db, id=f.id)
     if not db_f or not db_f.in_trash:
@@ -67,7 +67,7 @@ def restore_from_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
         return crud.restore_file_from_trash(db, f.id)
 
 
-@router.post("/delete", response_model=TrashStatus)
+@router.delete("/delete", response_model=TrashStatus)
 def delete_from_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
     db_f = crud.get_file_by_id(db, id=f.id)
     if not db_f or not db_f.in_trash:

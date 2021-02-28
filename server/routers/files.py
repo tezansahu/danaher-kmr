@@ -35,7 +35,7 @@ async def upload_file(file: UploadFile = File(...), db: Session = Depends(get_db
     pass
 
 
-@router.put("/rename", response_model=schemas.FileInfo)
+@router.patch("/rename", response_model=schemas.FileInfo)
 def rename_file(file: schemas.FileRename, db: Session = Depends(get_db)):
     db_file = crud.get_file_by_id(db, id=file.id)
     # Check if the file exists
