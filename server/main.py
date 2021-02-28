@@ -6,7 +6,7 @@ from fastapi.openapi.utils import get_openapi
 
 from db import models, schemas, crud
 from db.database import engine, SessionLocal
-from routers import users, folders, trash
+from routers import users, folders, files, trash
 
 import os
 import shutil
@@ -139,21 +139,24 @@ app.include_router(
     users.router,
     prefix="/users",
     tags=["Users"],
-    responses={404: {"description": "User not found"}},
 )
 
 app.include_router(
     folders.router,
     prefix="/folders",
     tags=["Folders"],
-    responses={404: {"description": "Folder not found"}},
+)
+
+app.include_router(
+    files.router,
+    prefix="/file",
+    tags=["Files"],
 )
 
 app.include_router(
     trash.router,
     prefix="/trash",
     tags=["Trash"],
-    responses={404: {"description": "Not found in Trash"}},
 )
 
 def custom_openapi():
