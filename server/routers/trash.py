@@ -77,7 +77,7 @@ def delete_from_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Unauthorized to delete this file/folder from trash")
 
     if db_f.is_folder:
-        # shutil.rmtree(db_f.abs_path)
+        shutil.rmtree(db_f.abs_path)
         return crud.delete_folder_from_trash(db, f.id)
     else:
         os.remove(db_f.abs_path)

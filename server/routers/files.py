@@ -1,4 +1,5 @@
 from fastapi import Depends, APIRouter, HTTPException, UploadFile, File
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from typing import List
 
@@ -20,8 +21,13 @@ def get_db():
 
 
 @router.get("/file/{id}")
-async def get_file(id: int, db: Session = Depends(get_db)):
-    pass
+async def download_file(id: int, db: Session = Depends(get_db)):
+    db_file = crud.get_file_by_id(db, id=id)
+    # Check if the file exists
+    if not db_file or db_file.is_folder:
+        raise HTTPException(status_code=404, detail="File not found")
+    
+    return FileResponse(path=db_file.abs_path, filename=db_file.name)
 
 
 @router.post("/upload", response_model=schemas.FileInfo)
