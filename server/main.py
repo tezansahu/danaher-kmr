@@ -6,8 +6,11 @@ from fastapi.openapi.utils import get_openapi
 
 from db import models, schemas, crud
 from db.database import engine, SessionLocal
-from routers import users
+from routers import users, folders
 
+import os
+import datetime
+import time
 from argparse import ArgumentParser
 from dotenv import load_dotenv
 from faker import Faker
@@ -52,7 +55,7 @@ async def reset_db():
 
             user = None
 
-            print("Populating users...")
+            print("Populating dummy users...")
             fake = Faker("en_IN")
             for i in range(args.num_users):
                 firstname = fake.unique.first_name()
@@ -70,9 +73,43 @@ async def reset_db():
                 print(user.__dict__)
             db.commit()
 
-            # [TODO] Populate `files` table with 1 root folder & 1 event folder created by `user`
+            # Populate `files` table with 1 root folder & 1 event folder created by `user`
+            print("Creating dummy standard parent folder...")
+            abs_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kmr_storage", "2021-February")
+            if not os.path.exists(abs_path):
+                os.makedirs(abs_path)
+
+            parent = crud.create_folder(
+                db=db, 
+                folder=schemas.FolderCreate(
+                    name="2021-February",
+                    abs_path=abs_path,
+                    is_folder=True,
+                    created_on=datetime.date(2021, 2, 20)
+                )
+            )
+            db.commit()
+
+            print("Creating dummy folder...")
+            abs_path = os.path.join(abs_path, "Sample_Event_Folder")
+            if not os.path.exists(abs_path):
+                os.makedirs(abs_path)
+            folder = crud.create_folder(
+                db=db, 
+                folder=schemas.FolderCreate(
+                    name="Sample_Event_Folder",
+                    abs_path=abs_path,
+                    is_folder=True,
+                    parent=parent.id,
+                    created_by=user.id,
+                    created_on=datetime.date(2021, 2, 20)
+                )
+            )
+            db.commit()
+
         finally:
             db.close()
+
 
 @app.get("/")
 async def root():
@@ -83,6 +120,13 @@ app.include_router(
     prefix="/users",
     tags=["Users"],
     responses={404: {"description": "User not found"}},
+)
+
+app.include_router(
+    folders.router,
+    prefix="/folders",
+    tags=["Folders"],
+    responses={404: {"description": "Folder not found"}},
 )
 
 def custom_openapi():
