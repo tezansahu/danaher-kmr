@@ -189,3 +189,24 @@ def restore_folder_from_trash(db: Session, id: int):
         db.query(models.File).filter(models.File.parent==parent_id, models.File.in_trash==True).update({models.File.in_trash: False, models.File.delete_on: None})
         db.commit()
     return {"id": id, "status": "restored from trash"}
+
+
+def delete_file_from_trash(db: Session, id: int):
+    db.query(models.File).filter(models.File.id == id).delete()
+    db.commit()
+    return {"id": id, "status": "deleted forever"}
+
+def delete_folder_from_trash(db: Session, id: int):
+    to_delete = [id]
+    queue = [id]
+    while queue:
+        id_to_check = queue.pop(0)
+        children_ids = db.query(models.File.id).filter(models.File.parent==id_to_check, models.File.in_trash==True).all()
+        queue.extend([id for id, in children_ids])
+        to_delete.extend([id for id, in children_ids])
+    
+    for f_id in to_delete[::-1]:
+        db.query(models.File).filter(models.File.id==f_id, models.File.in_trash==True).delete()
+        db.commit()
+
+    return {"id": id, "status": "deleted forever"}

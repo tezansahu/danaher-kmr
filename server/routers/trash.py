@@ -8,6 +8,7 @@ from db.database import SessionLocal
 
 from datetime import date
 import os
+import shutil
 
 router = APIRouter()
 
@@ -22,6 +23,7 @@ def get_db():
 class TrashStatus(BaseModel):
     id: int
     status: str
+
 
 @router.get("/", response_model=List[schemas.FileInfo])
 def get_trash_for_user(user_id: int, db: Session = Depends(get_db)):
@@ -63,3 +65,20 @@ def restore_from_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
         return crud.restore_folder_from_trash(db, f.id)
     else:
         return crud.restore_file_from_trash(db, f.id)
+
+
+@router.post("/delete", response_model=TrashStatus)
+def delete_from_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
+    db_f = crud.get_file_by_id(db, id=f.id)
+    if not db_f or not db_f.in_trash:
+         raise HTTPException(status_code=404, detail="File/Folder not found")
+    
+    if db_f.created_by != f.created_by:
+        raise HTTPException(status_code=401, detail="Unauthorized to delete this file/folder from trash")
+
+    if db_f.is_folder:
+        # shutil.rmtree(db_f.abs_path)
+        return crud.delete_folder_from_trash(db, f.id)
+    else:
+        os.remove(db_f.abs_path)
+        return crud.delete_file_from_trash(db, f.id)
