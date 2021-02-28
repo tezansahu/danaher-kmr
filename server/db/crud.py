@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, aliased
 import os
 import datetime
 from . import models, schemas
@@ -47,6 +47,23 @@ def get_file_by_id(db: Session, id: str):
     return db.query(models.File).filter(models.File.id == id).first()
 
 
+def get_folder_by_id(db: Session, id: str):
+    folder = db.query(models.File).filter(models.File.id == id, models.File.is_folder == True).first()
+    if not folder or folder.in_trash:
+        return None
+    else:
+        response = schemas.FolderInfo(
+            id=folder.id,
+            name=folder.name,
+            created_by=folder.created_by,
+            created_on=folder.created_on,
+            parent=folder.parent,
+            is_folder=folder.is_folder,
+            contents=db.query(models.File).filter(models.File.parent == id).all()
+        )
+        return response
+
+
 def get_file_by_name_in_parent(db: Session, name: str, parent: str):
     return db.query(models.File).filter(models.File.name == name, models.File.is_folder == False, models.File.parent == parent, models.File.in_trash == False).first()
 
@@ -55,8 +72,24 @@ def get_folder_by_name_in_parent(db: Session, name: str, parent: str):
     return db.query(models.File).filter(models.File.name == name, models.File.is_folder == True, models.File.parent == parent, models.File.in_trash == False).first()
 
 
-# def get_folders_by_creator(db: Session, created_by: str):
-#     return db.query(models.File).filter(models.File.created_by == created_by, models.File.in_trash == False).all()
+def get_folders_by_creator(db: Session, created_by: int):
+    folders = []
+    if created_by:
+        # Return the event folders created by a user that are present directly inside any standard root folder (<month>-<year>)
+        ParentFile = aliased(models.File, name='parent_device')
+        for f, _ in db.query(models.File, ParentFile).filter(
+            models.File.created_by == created_by,
+            models.File.is_folder == True,
+            models.File.in_trash == False, 
+            models.File.parent == ParentFile.id,
+            ParentFile.created_by == None
+        ).all():
+            folders.append(f)
+        return folders
+    else:
+        # Return all standard root folders (<month>-<year>)
+        return db.query(models.File).filter(models.File.created_by == created_by, models.File.is_folder == True, models.File.in_trash == False).all()
+
 
 def create_file(db: Session, f: schemas.FileCreate):
     db_file = models.File(
@@ -71,6 +104,7 @@ def create_file(db: Session, f: schemas.FileCreate):
     db.commit()
     db.refresh(db_file)
     return db_file
+
 
 def update_folder_name(db: Session, folder: schemas.FileRename):
     original_folder = db.query(models.File).filter(models.File.id==folder.id, models.File.is_folder==True, models.File.in_trash==False).first()
@@ -94,12 +128,28 @@ def update_folder_name(db: Session, folder: schemas.FileRename):
     db_folder = db.query(models.File).filter(models.File.id==folder.id).first()
     return db_folder
 
+
+def get_trash_for_user(db: Session, user_id: int):
+    trash = []
+    # Append the files & folders created by a user whose parents are not in trash
+    ParentFile = aliased(models.File, name='parent_device')
+    for f, _ in db.query(models.File, ParentFile).filter(
+        models.File.created_by == user_id,
+        # models.File.is_folder == True,
+        models.File.in_trash == True, 
+        models.File.parent == ParentFile.id,
+        ParentFile.in_trash == False
+    ).all():
+        trash.append(f)
+    return trash
+
 def add_file_to_trash(db: Session, id: int):
     to_be_deleted_on = datetime.date.today()+datetime.timedelta(days=10)
     # Add file with specified id to trash
-    db.query(models.File).filter(models.File.id==id, models.File.is_file==True, models.File.in_trash==False).update({models.File.in_trash: True, models.File.delete_on: to_be_deleted_on})
+    db.query(models.File).filter(models.File.id==id, models.File.is_folder==False, models.File.in_trash==False).update({models.File.in_trash: True, models.File.delete_on: to_be_deleted_on})
     db.commit()
     return {"id": id, "status": "added to trash"}
+
 
 def add_folder_to_trash(db: Session, id: int):
     to_be_deleted_on = datetime.date.today()+datetime.timedelta(days=10)
@@ -117,11 +167,13 @@ def add_folder_to_trash(db: Session, id: int):
         db.commit()
     return {"id": id, "status": "added to trash"}
 
+
 def restore_file_from_trash(db: Session, id: int):
     # Restore folder with specified id from trash
     db.query(models.File).filter(models.File.id==id, models.File.is_folder==False, models.File.in_trash==True).update({models.File.in_trash: False, models.File.delete_on: None})
     db.commit()
     return {"id": id, "status": "removed from trash"}
+
 
 def restore_folder_from_trash(db: Session, id: int):
     # Restore folder with specified id from trash

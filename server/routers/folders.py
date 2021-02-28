@@ -1,5 +1,6 @@
 from fastapi import Depends, APIRouter, HTTPException
 from sqlalchemy.orm import Session
+from typing import List
 
 from db import schemas, crud
 from db.database import SessionLocal
@@ -17,10 +18,15 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/{id}", response_model=schemas.FileInfo)
+@router.get("/", response_model=List[schemas.FileInfo])
+async def get_folders_by_user(user_id: int = None, db: Session = Depends(get_db)):
+    return crud.get_folders_by_creator(db, user_id)
+
+
+@router.get("/folder/{id}", response_model=schemas.FolderInfo)
 async def get_folder_details(id: int, db: Session = Depends(get_db)):
-    db_folder = crud.get_file_by_id(db, id=id)
-    if not db_folder or not db_folder.is_folder or db_folder.in_trash:
+    db_folder = crud.get_folder_by_id(db, id=id)
+    if not db_folder:
         raise HTTPException(status_code=404, detail="Folder not found")
     return db_folder
 
@@ -98,7 +104,7 @@ def rename_folder(folder: schemas.FileRename, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Unauthorized to rename folder")
     
     # Rename the folder in the database
-    new_abs_path = db_folder.abs_path.replace(f"{db_folder.name}", folder.new_name)
+    new_abs_path = db_folder.abs_path.replace(db_folder.name, folder.new_name)
     os.rename(db_folder.abs_path, new_abs_path)
     db_folder = crud.update_folder_name(db, folder)
     return db_folder

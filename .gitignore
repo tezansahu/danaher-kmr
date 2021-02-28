@@ -1,5 +1,5 @@
 venvs/
 __pycache__/
 .vscode/
-
+kmr_storage/
 .env

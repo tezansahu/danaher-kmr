@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from datetime import date
 from pydantic import BaseModel
 
@@ -60,3 +60,6 @@ class FileInfo(BaseModel):
     is_folder: bool
     class Config:
         orm_mode =  True
+
+class FolderInfo(FileInfo):
+    contents: List[FileInfo]

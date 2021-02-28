@@ -1,5 +1,7 @@
 from fastapi import Depends, APIRouter, HTTPException
 from sqlalchemy.orm import Session
+from pydantic import BaseModel
+from typing import List
 
 from db import schemas, crud
 from db.database import SessionLocal
@@ -17,7 +19,19 @@ def get_db():
     finally:
         db.close()
 
-@router.put("/add")
+class TrashStatus(BaseModel):
+    id: int
+    status: str
+
+@router.get("/", response_model=List[schemas.FileInfo])
+def get_trash_for_user(user_id: int, db: Session = Depends(get_db)):
+    db_user = crud.get_user_by_id(db, id=user_id)
+    if not db_user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return crud.get_trash_for_user(db, user_id)
+
+
+@router.put("/add", response_model=TrashStatus)
 def add_to_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
     db_f = crud.get_file_by_id(db, id=f.id)
     if not db_f or db_f.in_trash:
@@ -31,7 +45,8 @@ def add_to_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
     else:
         return crud.add_file_to_trash(db, f.id)
 
-@router.put("/restore")
+
+@router.put("/restore", response_model=TrashStatus)
 def restore_from_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
     db_f = crud.get_file_by_id(db, id=f.id)
     if not db_f or not db_f.in_trash:

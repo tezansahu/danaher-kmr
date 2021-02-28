@@ -9,6 +9,7 @@ from db.database import engine, SessionLocal
 from routers import users, folders, trash
 
 import os
+import shutil
 import datetime
 import time
 from argparse import ArgumentParser
@@ -49,10 +50,11 @@ async def reset_db():
         try:
             # Initialize the database with dummy values
             db = SessionLocal()
-            print("deleting all items and users")
+            print("Deleting all folders, files and users")
             db.query(models.User).delete()
             db.query(models.File).delete()
-
+            if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), "kmr_storage")):
+                shutil.rmtree(os.path.join(os.path.dirname(os.path.abspath(__file__)), "kmr_storage"))
             user = None
 
             print("Populating dummy users...")
@@ -90,17 +92,35 @@ async def reset_db():
             )
             db.commit()
 
-            print("Creating dummy folder...")
-            abs_path = os.path.join(abs_path, "Sample_Event_Folder")
+            print("Creating dummy event folder...")
+            abs_path = os.path.join(abs_path, "Event_1")
             if not os.path.exists(abs_path):
                 os.makedirs(abs_path)
             folder = crud.create_file(
                 db=db, 
                 f=schemas.FileCreate(
-                    name="Sample_Event_Folder",
+                    name="Event_1",
                     abs_path=abs_path,
                     is_folder=True,
                     parent=parent.id,
+                    created_by=user.id,
+                    created_on=datetime.date(2021, 2, 20)
+                )
+            )
+            db.commit()
+
+            print("Creating dummy file in event folder...")
+            abs_path = os.path.join(abs_path, "Event_1", "test_file.txt")
+            with open(abs_path, "w") as f:
+                f.write("This is a dummy file for testing")
+            
+            file = crud.create_file(
+                db=db, 
+                f=schemas.FileCreate(
+                    name="test_file.txt",
+                    abs_path=abs_path,
+                    is_folder=False,
+                    parent=folder.id,
                     created_by=user.id,
                     created_on=datetime.date(2021, 2, 20)
                 )
