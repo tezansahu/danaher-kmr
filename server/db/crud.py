@@ -39,56 +39,101 @@ def update_user_info(db: Session, user: schemas.UserInfo):
     return db_user
 
 
-#####################################
-########### Folder-related ##########
-#####################################
+############################################
+########### Folder & file-related ##########
+############################################
 
-def get_folder_by_id(db: Session, id: str):
-    return db.query(models.File).filter(models.File.id == id, models.File.is_folder == True).first()
+def get_file_by_id(db: Session, id: str):
+    return db.query(models.File).filter(models.File.id == id).first()
+
+
+def get_file_by_name_in_parent(db: Session, name: str, parent: str):
+    return db.query(models.File).filter(models.File.name == name, models.File.is_folder == False, models.File.parent == parent, models.File.in_trash == False).first()
+
 
 def get_folder_by_name_in_parent(db: Session, name: str, parent: str):
     return db.query(models.File).filter(models.File.name == name, models.File.is_folder == True, models.File.parent == parent, models.File.in_trash == False).first()
 
-def get_folders_by_creator(db: Session, created_by: str):
-    return db.query(models.File).filter(models.File.created_by == created_by, models.File.in_trash == False).all()
 
-def create_folder(db: Session, folder: schemas.FolderCreate):
-    db_folder = models.File(
-        name=folder.name,
-        abs_path=folder.abs_path,
-        is_folder=folder.is_folder,
-        parent=folder.parent,
-        created_by=folder.created_by,
-        created_on=folder.created_on
+# def get_folders_by_creator(db: Session, created_by: str):
+#     return db.query(models.File).filter(models.File.created_by == created_by, models.File.in_trash == False).all()
+
+def create_file(db: Session, f: schemas.FileCreate):
+    db_file = models.File(
+        name=f.name,
+        abs_path=f.abs_path,
+        is_folder=f.is_folder,
+        parent=f.parent,
+        created_by=f.created_by,
+        created_on=f.created_on
     )
-    db.add(db_folder)
+    db.add(db_file)
     db.commit()
-    db.refresh(db_folder)
+    db.refresh(db_file)
+    return db_file
+
+def update_folder_name(db: Session, folder: schemas.FileRename):
+    original_folder = db.query(models.File).filter(models.File.id==folder.id, models.File.is_folder==True, models.File.in_trash==False).first()
+    original_name = original_folder.name
+    new_abs_path = original_folder.abs_path.replace(f"/{original_name}", f"/{folder.new_name}")
+    db.query(models.File).filter(models.File.id==folder.id, models.File.is_folder==True, models.File.in_trash==False).update({models.File.name: folder.new_name, models.File.abs_path: new_abs_path})
+    db.commit()
+
+    # Update the absolute paths of all children & sub-children of the folder
+    parents_to_check = [folder.id]
+    while parents_to_check:
+        parent_id = parents_to_check.pop(0)
+        children_folder_ids = db.query(models.File.id).filter(models.File.parent==parent_id, models.File.is_folder==True).all()
+        parents_to_check.extend([id for id, in children_folder_ids])
+        for f in db.query(models.File).filter(models.File.parent==parent_id).all():
+            new_abs_path = f.abs_path.replace(f"/{original_name}/", f"/{folder.new_name}/")
+            print(f.id, f.name, new_abs_path)
+            db.query(models.File).filter(models.File.parent==parent_id).update({models.File.abs_path: new_abs_path})
+            db.commit()
+
+    db_folder = db.query(models.File).filter(models.File.id==folder.id).first()
     return db_folder
 
-def update_folder_name(db: Session, folder_id: int, folder_name_new: str):
-    db.query(models.File).filter(models.File.id==folder_id, models.File.is_folder==True, models.File.in_trash==False).update({models.File.name: folder_new_name})
+def add_file_to_trash(db: Session, id: int):
+    to_be_deleted_on = datetime.date.today()+datetime.timedelta(days=10)
+    # Add file with specified id to trash
+    db.query(models.File).filter(models.File.id==id, models.File.is_file==True, models.File.in_trash==False).update({models.File.in_trash: True, models.File.delete_on: to_be_deleted_on})
     db.commit()
-    db_user = db.query(models.File).filter(models.File.id==folder_id).first()
-    return db_user
+    return {"id": id, "status": "added to trash"}
 
-def add_folder_to_trash(db: Session, folder_id: int):
+def add_folder_to_trash(db: Session, id: int):
     to_be_deleted_on = datetime.date.today()+datetime.timedelta(days=10)
     # Add folder with specified id to trash
-    db.query(models.File).filter(models.File.id==folder_id, models.File.is_folder==True, models.File.in_trash==False).update({models.File.in_trash: True, models.File.delete_on: to_be_deleted_on})
+    db.query(models.File).filter(models.File.id==id, models.File.is_folder==True, models.File.in_trash==False).update({models.File.in_trash: True, models.File.delete_on: to_be_deleted_on})
     db.commit()
 
-    # Add cotents of folder with specified id to trash
-    db.query(models.File).filter(models.File.parent==folder_id, models.File.in_trash==False).update({models.File.in_trash: True, models.File.delete_on: to_be_deleted_on})
-    db.commit()
-    return True
+    # Add contents of folder with specified id to trash
+    parents_to_check = [id]
+    while parents_to_check:
+        parent_id = parents_to_check.pop(0)
+        children_folder_ids = db.query(models.File.id).filter(models.File.parent==parent_id, models.File.is_folder==True, models.File.in_trash==False).all()
+        parents_to_check.extend([id for id, in children_folder_ids])
+        db.query(models.File).filter(models.File.parent==parent_id, models.File.in_trash==False).update({models.File.in_trash: True, models.File.delete_on: to_be_deleted_on})
+        db.commit()
+    return {"id": id, "status": "added to trash"}
 
-def remove_folder_from_trash(db: Session, folder_id: int):
-    # Remove folder with specified id from trash
-    db.query(models.File).filter(models.File.id==folder_id, models.File.is_folder==True, models.File.in_trash==True).update({models.File.in_trash: False, models.File.delete_on: None})
+def restore_file_from_trash(db: Session, id: int):
+    # Restore folder with specified id from trash
+    db.query(models.File).filter(models.File.id==id, models.File.is_folder==False, models.File.in_trash==True).update({models.File.in_trash: False, models.File.delete_on: None})
+    db.commit()
+    return {"id": id, "status": "removed from trash"}
+
+def restore_folder_from_trash(db: Session, id: int):
+    # Restore folder with specified id from trash
+    db.query(models.File).filter(models.File.id==id, models.File.is_folder==True, models.File.in_trash==True).update({models.File.in_trash: False, models.File.delete_on: None})
     db.commit()
 
-    # Remove cotents of folder with specified id from trash
-    db.query(models.File).filter(models.File.parent==folder_id, models.File.in_trash==True).update({models.File.in_trash: False, models.File.delete_on: None})
-    db.commit()
-    return True
+    # Restore contents of folder with specified id from trash
+    parents_to_check = [id]
+    while parents_to_check:
+        parent_id = parents_to_check.pop(0)
+        children_folder_ids = db.query(models.File.id).filter(models.File.parent==parent_id, models.File.is_folder==True, models.File.in_trash==True).all()
+        parents_to_check.extend([id for id, in children_folder_ids])
+        db.query(models.File).filter(models.File.parent==parent_id, models.File.in_trash==True).update({models.File.in_trash: False, models.File.delete_on: None})
+        db.commit()
+    return {"id": id, "status": "restored from trash"}

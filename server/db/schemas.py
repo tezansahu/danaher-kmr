@@ -30,32 +30,33 @@ class UserInfo(UserInfoBase):
     class Config:
         orm_mode =  True
 
-#############################################
-########### Folder-related Schemas ##########
-#############################################
+##################################################
+########### File/Folder-related Schemas ##########
+##################################################
 
-class FolderBase(BaseModel):
+class FileBase(BaseModel):
     name: str
     created_by: Optional[int] = None
     parent: Optional[int] = None
-    
-class FolderCreate(FolderBase):
+
+class FileCreate(FileBase):
     abs_path: Optional[str]
-    is_folder: bool = True
+    is_folder: bool = False
     created_on: Optional[date]
 
-class FolderDelete(FolderBase):
-    in_trash: bool
-    delete_on: Optional[date]
-
-class FolderInfo(FolderCreate):
+class FileEditBase(BaseModel):
     id: int
+    created_by: int
+
+class FileRename(FileEditBase):
+    new_name: str
+
+class FileInfo(BaseModel):
+    id: int
+    name: str
+    created_by: Optional[int] = None
+    created_on: Optional[date] = None
+    parent: Optional[int] = None
+    is_folder: bool
     class Config:
         orm_mode =  True
-
-
-
-###########################################
-########### File-related Schemas ##########
-###########################################
-

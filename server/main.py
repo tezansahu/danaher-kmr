@@ -6,7 +6,7 @@ from fastapi.openapi.utils import get_openapi
 
 from db import models, schemas, crud
 from db.database import engine, SessionLocal
-from routers import users, folders
+from routers import users, folders, trash
 
 import os
 import datetime
@@ -79,9 +79,9 @@ async def reset_db():
             if not os.path.exists(abs_path):
                 os.makedirs(abs_path)
 
-            parent = crud.create_folder(
+            parent = crud.create_file(
                 db=db, 
-                folder=schemas.FolderCreate(
+                f=schemas.FileCreate(
                     name="2021-February",
                     abs_path=abs_path,
                     is_folder=True,
@@ -94,9 +94,9 @@ async def reset_db():
             abs_path = os.path.join(abs_path, "Sample_Event_Folder")
             if not os.path.exists(abs_path):
                 os.makedirs(abs_path)
-            folder = crud.create_folder(
+            folder = crud.create_file(
                 db=db, 
-                folder=schemas.FolderCreate(
+                f=schemas.FileCreate(
                     name="Sample_Event_Folder",
                     abs_path=abs_path,
                     is_folder=True,
@@ -127,6 +127,13 @@ app.include_router(
     prefix="/folders",
     tags=["Folders"],
     responses={404: {"description": "Folder not found"}},
+)
+
+app.include_router(
+    trash.router,
+    prefix="/trash",
+    tags=["Trash"],
+    responses={404: {"description": "Not found in Trash"}},
 )
 
 def custom_openapi():
