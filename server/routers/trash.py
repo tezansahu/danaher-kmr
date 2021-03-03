@@ -5,6 +5,7 @@ from typing import List
 
 from db import schemas, crud
 from db.database import SessionLocal
+from utils import utils
 
 from datetime import date
 import os
@@ -12,13 +13,6 @@ import shutil
 
 router = APIRouter()
 
-def get_db():
-    db = None
-    try:
-        db = SessionLocal()
-        yield db
-    finally:
-        db.close()
 
 class TrashStatus(BaseModel):
     id: int
@@ -26,7 +20,7 @@ class TrashStatus(BaseModel):
 
 
 @router.get("/", response_model=List[schemas.FileInfo])
-def get_trash_for_user(user_id: int, db: Session = Depends(get_db)):
+def get_trash_for_user(user_id: int, db: Session = Depends(utils.get_db)):
     db_user = crud.get_user_by_id(db, id=user_id)
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -34,7 +28,7 @@ def get_trash_for_user(user_id: int, db: Session = Depends(get_db)):
 
 
 @router.patch("/add", response_model=TrashStatus)
-def add_to_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
+def add_to_trash(f: schemas.FileEditBase, db: Session = Depends(utils.get_db)):
     db_f = crud.get_file_by_id(db, id=f.id)
     if not db_f or db_f.in_trash:
          raise HTTPException(status_code=404, detail="File/Folder not found")
@@ -49,7 +43,7 @@ def add_to_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
 
 
 @router.patch("/restore", response_model=TrashStatus)
-def restore_from_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
+def restore_from_trash(f: schemas.FileEditBase, db: Session = Depends(utils.get_db)):
     db_f = crud.get_file_by_id(db, id=f.id)
     if not db_f or not db_f.in_trash:
          raise HTTPException(status_code=404, detail="File/Folder not found in trash")
@@ -68,7 +62,7 @@ def restore_from_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
 
 
 @router.delete("/delete", response_model=TrashStatus)
-def delete_from_trash(f: schemas.FileEditBase, db: Session = Depends(get_db)):
+def delete_from_trash(f: schemas.FileEditBase, db: Session = Depends(utils.get_db)):
     db_f = crud.get_file_by_id(db, id=f.id)
     if not db_f or not db_f.in_trash:
          raise HTTPException(status_code=404, detail="File/Folder not found")

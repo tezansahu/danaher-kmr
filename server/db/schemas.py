@@ -60,6 +60,7 @@ class Info(FileBase):
     id: int
     abs_path: Optional[str]
     created_on: Optional[date] = None
+    is_folder: bool
 
 class FileInfo(Info):
     size: Optional[int] = None

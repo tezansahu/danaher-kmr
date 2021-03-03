@@ -4,34 +4,28 @@ from typing import List
 
 from db import schemas, crud
 from db.database import SessionLocal
+from utils import utils
 
 from datetime import date
 import os
 
 router = APIRouter()
 
-def get_db():
-    db = None
-    try:
-        db = SessionLocal()
-        yield db
-    finally:
-        db.close()
 
 @router.get("/", response_model=List[schemas.FileInfo])
-async def get_folders_by_user(user_id: int = None, db: Session = Depends(get_db)):
+async def get_folders_by_user(user_id: int = None, db: Session = Depends(utils.get_db)):
     return crud.get_folders_by_creator(db, user_id)
 
 
 @router.get("/folder/{id}", response_model=schemas.FolderInfo)
-async def get_folder_details(id: int, db: Session = Depends(get_db)):
+async def get_folder_details(id: int, db: Session = Depends(utils.get_db)):
     db_folder = crud.get_folder_by_id(db, id=id)
     if not db_folder:
         raise HTTPException(status_code=404, detail="Folder not found")
     return db_folder
 
 @router.post("/create", response_model=schemas.FileInfo)
-async def create_folder(folder: schemas.FileBase, db: Session = Depends(get_db)):
+async def create_folder(folder: schemas.FileBase, db: Session = Depends(utils.get_db)):
     root_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "kmr_storage")
 
     if folder.parent:
@@ -93,7 +87,7 @@ async def create_folder(folder: schemas.FileBase, db: Session = Depends(get_db))
 
 
 @router.patch("/rename", response_model=schemas.FileInfo)
-def rename_folder(folder: schemas.FileRename, db: Session = Depends(get_db)):
+def rename_folder(folder: schemas.FileRename, db: Session = Depends(utils.get_db)):
     db_folder = crud.get_file_by_id(db, id=folder.id)
     # Check if the folder exists
     if not db_folder or db_folder.is_folder != True:

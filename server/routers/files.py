@@ -5,6 +5,7 @@ from typing import List
 
 from db import schemas, crud
 from db.database import SessionLocal
+from utils import utils
 
 import shutil
 from datetime import date
@@ -12,17 +13,9 @@ import os
 
 router = APIRouter()
 
-def get_db():
-    db = None
-    try:
-        db = SessionLocal()
-        yield db
-    finally:
-        db.close()
-
 
 @router.get("/download/{id}")
-async def download_file(id: int, db: Session = Depends(get_db)):
+async def download_file(id: int, db: Session = Depends(utils.get_db)):
     db_file = crud.get_file_by_id(db, id=id)
     # Check if the file exists
     if not db_file or db_file.is_folder:
@@ -31,7 +24,7 @@ async def download_file(id: int, db: Session = Depends(get_db)):
     return FileResponse(path=db_file.abs_path, filename=db_file.name)
 
 @router.get("/file/{id}", response_model=schemas.FileInfo)
-async def download_file(id: int, db: Session = Depends(get_db)):
+async def download_file(id: int, db: Session = Depends(utils.get_db)):
     db_file = crud.get_file_by_id(db, id=id)
     # Check if the file exists
     if not db_file or db_file.is_folder:
@@ -39,7 +32,7 @@ async def download_file(id: int, db: Session = Depends(get_db)):
     return db_file
 
 @router.post("/upload", response_model=List[schemas.FileInfo])
-async def upload_file(created_by: int = Form(...), parent: int = Form(...), files: List[UploadFile] = File(...), db: Session = Depends(get_db)):
+async def upload_file(created_by: int = Form(...), parent: int = Form(...), files: List[UploadFile] = File(...), db: Session = Depends(utils.get_db)):
     db_folder = crud.get_folder_by_id(db, parent)
     
     # Check if the parent folder exists
@@ -78,7 +71,7 @@ async def upload_file(created_by: int = Form(...), parent: int = Form(...), file
     return response_files
 
 @router.patch("/rename", response_model=schemas.FileInfo)
-def rename_file(file: schemas.FileRename, db: Session = Depends(get_db)):
+def rename_file(file: schemas.FileRename, db: Session = Depends(utils.get_db)):
     db_file = crud.get_file_by_id(db, id=file.id)
     # Check if the file exists
     if not db_file or db_file.is_folder:
