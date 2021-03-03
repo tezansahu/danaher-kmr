@@ -55,7 +55,7 @@ async def create_folder(folder: schemas.FileBase, db: Session = Depends(get_db))
             os.makedirs(parent_abs_path)
 
             # Add an entry to the database
-            std_parent = schemas.FileCreate(
+            std_parent = schemas.FolderCreate(
                 name=parent_name,
                 abs_path=parent_abs_path,
                 is_folder=True,
@@ -63,7 +63,7 @@ async def create_folder(folder: schemas.FileBase, db: Session = Depends(get_db))
                 created_by=None,
                 created_on=curr_date
             )
-            parent_folder = crud.create_file(db=db, f=std_parent)
+            parent_folder = crud.create_folder(db=db, f=std_parent)
             folder.parent = parent_folder.id
         else:
             # If the standerd parent folder exists, get its details
@@ -81,7 +81,7 @@ async def create_folder(folder: schemas.FileBase, db: Session = Depends(get_db))
     os.makedirs(abs_path)
 
     # Add the new details & create the database entry for the folder
-    new_folder = schemas.FileCreate(
+    new_folder = schemas.FolderCreate(
         name=folder.name,
         abs_path=abs_path,
         is_folder=True,
@@ -89,7 +89,7 @@ async def create_folder(folder: schemas.FileBase, db: Session = Depends(get_db))
         created_by=folder.created_by,
         created_on=date.today()
     )
-    return crud.create_file(db=db, f=new_folder)
+    return crud.create_folder(db=db, f=new_folder)
 
 
 @router.patch("/rename", response_model=schemas.FileInfo)

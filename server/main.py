@@ -81,9 +81,9 @@ async def reset_db():
             if not os.path.exists(abs_path):
                 os.makedirs(abs_path)
 
-            parent = crud.create_file(
+            parent = crud.create_folder(
                 db=db, 
-                f=schemas.FileCreate(
+                f=schemas.FolderCreate(
                     name="2021-February",
                     abs_path=abs_path,
                     is_folder=True,
@@ -96,9 +96,9 @@ async def reset_db():
             abs_path = os.path.join(abs_path, "Event_1")
             if not os.path.exists(abs_path):
                 os.makedirs(abs_path)
-            folder = crud.create_file(
+            folder = crud.create_folder(
                 db=db, 
-                f=schemas.FileCreate(
+                f=schemas.FolderCreate(
                     name="Event_1",
                     abs_path=abs_path,
                     is_folder=True,
@@ -122,7 +122,9 @@ async def reset_db():
                     is_folder=False,
                     parent=folder.id,
                     created_by=user.id,
-                    created_on=datetime.date(2021, 2, 20)
+                    created_on=datetime.date(2021, 2, 20),
+                    size=os.path.getsize(abs_path),
+                    file_type=os.path.splitext(abs_path)[1][1:]
                 )
             )
             db.commit()

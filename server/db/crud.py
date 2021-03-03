@@ -59,16 +59,17 @@ def get_folder_by_id(db: Session, id: str):
             created_on=folder.created_on,
             parent=folder.parent,
             is_folder=folder.is_folder,
+            abs_path=folder.abs_path,
             contents=db.query(models.File).filter(models.File.parent == id).all()
         )
         return response
 
 
-def get_file_by_name_in_parent(db: Session, name: str, parent: str):
+def get_file_by_name_in_parent(db: Session, name: str, parent: int):
     return db.query(models.File).filter(models.File.name == name, models.File.is_folder == False, models.File.parent == parent, models.File.in_trash == False).first()
 
 
-def get_folder_by_name_in_parent(db: Session, name: str, parent: str):
+def get_folder_by_name_in_parent(db: Session, name: str, parent: int):
     return db.query(models.File).filter(models.File.name == name, models.File.is_folder == True, models.File.parent == parent, models.File.in_trash == False).first()
 
 
@@ -95,6 +96,8 @@ def create_file(db: Session, f: schemas.FileCreate):
     db_file = models.File(
         name=f.name,
         abs_path=f.abs_path,
+        size=f.size,
+        file_type=f.file_type,
         is_folder=f.is_folder,
         parent=f.parent,
         created_by=f.created_by,
@@ -105,6 +108,19 @@ def create_file(db: Session, f: schemas.FileCreate):
     db.refresh(db_file)
     return db_file
 
+def create_folder(db: Session, f: schemas.FolderCreate):
+    db_folder = models.File(
+        name=f.name,
+        abs_path=f.abs_path,
+        is_folder=f.is_folder,
+        parent=f.parent,
+        created_by=f.created_by,
+        created_on=f.created_on
+    )
+    db.add(db_folder)
+    db.commit()
+    db.refresh(db_folder)
+    return db_folder
 
 def update_folder_name(db: Session, folder: schemas.FileRename):
     original_folder = db.query(models.File).filter(models.File.id==folder.id, models.File.is_folder==True, models.File.in_trash==False).first()

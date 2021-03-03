@@ -39,10 +39,15 @@ class FileBase(BaseModel):
     created_by: Optional[int] = None
     parent: Optional[int] = None
 
-class FileCreate(FileBase):
+
+class FolderCreate(FileBase):
     abs_path: Optional[str]
-    is_folder: bool = False
+    is_folder: bool = True
     created_on: Optional[date]
+
+class FileCreate(FolderCreate):
+    size: Optional[int] = None
+    file_type: Optional[str] = None
 
 class FileEditBase(BaseModel):
     id: int
@@ -51,15 +56,16 @@ class FileEditBase(BaseModel):
 class FileRename(FileEditBase):
     new_name: str
 
-class FileInfo(BaseModel):
+class Info(FileBase):
     id: int
-    name: str
-    created_by: Optional[int] = None
+    abs_path: Optional[str]
     created_on: Optional[date] = None
-    parent: Optional[int] = None
-    is_folder: bool
+
+class FileInfo(Info):
+    size: Optional[int] = None
+    file_type: Optional[str] = None
     class Config:
         orm_mode =  True
 
-class FolderInfo(FileInfo):
+class FolderInfo(Info):
     contents: List[FileInfo]
