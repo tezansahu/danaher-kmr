@@ -68,28 +68,28 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'settings',
     link: '/pages/settings',
   },
-  {
-    title: 'Change Theme',
-    icon: 'lock-outline',
-    children: [
-      {
-        title: 'Light',
-        link: '/auth/login',
-      },
-      {
-        title: 'Dark',
-        link: '/auth/reset-password',
-      },
-      {
-        title: 'Cosmic',
-        link: '/auth/reset-password',
-      },
-      {
-        title: 'Corporate',
-        link: '/auth/reset-password',
-      },
-    ],
-  },
+  // {
+  //   title: 'Change Theme',
+  //   icon: 'lock-outline',
+  //   children: [
+  //     {
+  //       title: 'Light',
+  //       link: '/auth/login',
+  //     },
+  //     {
+  //       title: 'Dark',
+  //       link: '/auth/reset-password',
+  //     },
+  //     {
+  //       title: 'Cosmic',
+  //       link: '/auth/reset-password',
+  //     },
+  //     {
+  //       title: 'Corporate',
+  //       link: '/auth/reset-password',
+  //     },
+  //   ],
+  // },
   {
     title: 'E-commerce',
     icon: 'shopping-cart-outline',
