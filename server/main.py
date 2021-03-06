@@ -26,7 +26,7 @@ load_dotenv()
 models.Base.metadata.create_all(bind=engine)
 
 origins = [
-    "*",
+    "http://localhost:4200",
 ]
 
 app = FastAPI()
@@ -39,8 +39,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-app = FastAPI()
 
 @app.on_event("startup")
 async def reset_db():
@@ -105,4 +103,4 @@ def custom_openapi():
 app.openapi = custom_openapi
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=args.reload)
+    uvicorn.run("main:app", host="localhost", port=8000, reload=args.reload)
