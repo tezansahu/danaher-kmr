@@ -18,7 +18,7 @@ import { UploadModule } from './upload/upload.module';
     DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
-    UploadModule
+    // UploadModule
   ],
   declarations: [
     PagesComponent,

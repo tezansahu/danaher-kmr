@@ -15,11 +15,11 @@ const routes: Routes = [{
       path: 'dashboard',
       component: ECommerceComponent,
     },
-    {
-      path: 'upload',
-      loadChildren: () => import('./upload/upload.module')
-        .then(m => m.UploadModule),
-    },
+    // {
+    //   path: 'upload',
+    //   loadChildren: () => import('./upload/upload.module')
+    //     .then(m => m.UploadModule),
+    // },
     {
       path: 'iot-dashboard',
       component: DashboardComponent,
