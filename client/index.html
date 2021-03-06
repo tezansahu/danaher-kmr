@@ -12,7 +12,7 @@
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
 
@@ -26,12 +26,12 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">DANAHER</div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Home</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">My Files</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Favorites</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Trash</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">My Account</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Settings</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-home sidebar-icon" aria-hidden="true"></i>Home</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-folder sidebar-icon" aria-hidden="true"></i>My Files</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-star sidebar-icon" aria-hidden="true"></i>Favorites</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-trash-o sidebar-icon" aria-hidden="true"></i>Trash</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-user sidebar-icon" aria-hidden="true"></i>My Account</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light"><i class="fa fa-gear sidebar-icon" aria-hidden="true"></i>Settings</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -48,17 +48,18 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
+            
             <li class="nav-item">
               <!-- <a class="nav-link" href="#">Link</a> -->
               <div class="d-flex justify-content-center h-100">
                 <div class="searchbar">
                   <input class="search_input" type="text" name="" placeholder="Search...">
-                  <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                  <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
                 </div>
               </div>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
