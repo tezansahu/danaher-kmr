@@ -1,35 +1,11 @@
-language: node_js
-
-sudo: false
-dist: trusty
-
+sudo:          false
+language:      node_js
 node_js:
-  - '10'
-
-branches:
-  only:
-  - master
-  - starter-kit
-  - demo
-
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
-
-before_install:
-  - npm i -g npm@latest
-
-install:
-  - travis_retry npm i
-
-before_script:
-
+  - "node"
+install:       npm install
 script:
-  - npm run lint:ci
-  - npm run build:prod
-
-git:
-  depth: 1
+  - npm test
+  - gulp
+cache:
+  directories:
+    - node_modules
