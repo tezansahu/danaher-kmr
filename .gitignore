@@ -5,3 +5,4 @@ kmr_storage/
 .env
 .DS_Store
 .idea/
+node_modules/
