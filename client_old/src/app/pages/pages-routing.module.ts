@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { FileUploadComponent } from './files-upload/file-upload.component'; 
+import { ThumbnailComponent } from './thumbnail/thumbnail.component';
 
 const routes: Routes = [{
   path: '',
@@ -22,6 +23,10 @@ const routes: Routes = [{
     {
       path: 'upload',
       component: FileUploadComponent,
+    },
+    {
+      path: 'thumbnail',
+      component: ThumbnailComponent,
     },
     {
       path: 'layout',
