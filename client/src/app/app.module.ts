@@ -11,6 +11,7 @@ import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FileUploadComponent } from './pages/files-upload/file-upload.component'; 
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -22,7 +23,7 @@ import {
 } from '@nebular/theme';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,FileUploadComponent,],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

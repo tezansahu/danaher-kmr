@@ -7,7 +7,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Upload Files',
-        link: '/pages/upload/files',
+        link: '/pages/upload',
       },
       {
         title: 'Upload Folder',
