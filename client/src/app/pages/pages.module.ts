@@ -7,7 +7,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
-import { FilesModule } from './upload/files/files.module';
+import { UploadModule } from './upload/upload.module';
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import { FilesModule } from './upload/files/files.module';
     DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
-    FilesModule
+    UploadModule
   ],
   declarations: [
     PagesComponent,
