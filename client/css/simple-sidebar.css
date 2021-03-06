@@ -19,13 +19,21 @@
 
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
 }
 
 #sidebar-wrapper .list-group {
   width: 15rem;
+  font-size: 1.2rem;
+  justify-content: center;
 }
 
+.sidebar-icon {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.3rem;
+}
 #page-content-wrapper {
   min-width: 100vw;
 }
@@ -48,3 +56,38 @@
     margin-left: -15rem;
   }
 }
+
+.search_input{
+  color: rgb(0, 0, 0);
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 0;
+  caret-color:transparent;
+  line-height: 40px;
+  transition: width 0.4s linear;
+  }
+
+  .searchbar:hover > .search_input{
+  padding: 0 10px;
+  width: 500px;
+  caret-color:rgb(0, 0, 0);
+  transition: width 0.4s linear;
+  }
+
+  .searchbar:hover > .search_icon{
+  background: rgb(53, 53, 53);
+  color: #ffffff;
+  }
+
+  .search_icon{
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color:rgb(245, 0, 0);
+  text-decoration:none;
+  }
