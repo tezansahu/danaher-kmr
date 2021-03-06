@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
+import {Folder} from '../../../FolderDetails';
+import {ApiService} from '../../../api.service';
 
 interface TreeNode<T> {
   data: T;
@@ -29,8 +31,9 @@ export class TreeGridComponent {
   sortColumn: string;
   sortDirection: NbSortDirection = NbSortDirection.NONE;
 
-  constructor(private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
+  constructor(private api: ApiService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {
     this.dataSource = this.dataSourceBuilder.create(this.data);
+    console.log(this.folder);
   }
 
   updateSort(sortRequest: NbSortRequest): void {
@@ -45,6 +48,20 @@ export class TreeGridComponent {
     return NbSortDirection.NONE;
   }
 
+  getdetails() {
+    return new Promise((resolve, reject) => {this.api.getHomeFolders()
+      .subscribe(data => {
+          this.folder = data;
+          console.log(this.folder);
+          
+      }, error => {
+          resolve(false);
+      });
+  });
+}
+  private folder: Folder;
+  // console.log(this.folder);
+  
   private data: TreeNode<FSEntry>[] = [
     {
       data: { name: 'Projects', size: '1.8 MB', items: 5, kind: 'dir' },

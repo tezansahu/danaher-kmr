@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User, SignUpForm, LoginForm } from './UserDetails';
+import { Folder } from './FolderDetails';
 import { HttpClient, HttpHandler, HttpHeaders, HttpClientXsrfModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 // import 'rxjs/add/observable/of';
@@ -26,6 +27,11 @@ export class ApiService {
     return this.http.post<User>(this._url + API.Register, data, this.httpOptions)
             .pipe(tap(res => this.setSession(res)));
   }
+  getHomeFolders() : Observable<Folder> {
+    return this.http.get<Folder>(this._url + API.GetHomeFolders, this.httpOptions)
+            .pipe(tap(res => this.setSession(res)));
+  }
+
   loginUser(data: LoginForm) : Observable<User> {
     return this.http.post<User>(this._url + API.Login, data, this.httpOptions)
             .pipe(tap(res => this.setSession(res)));

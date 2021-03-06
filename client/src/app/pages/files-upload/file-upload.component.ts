@@ -39,4 +39,8 @@ export class FileUploadComponent implements OnInit {
             } 
         ); 
     } 
+
+    onClick(){
+        
+    }
 } 
