@@ -11,10 +11,10 @@
   <title>Knowledge Management Repository</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link href="../css/simple-sidebar.css" rel="stylesheet">
 
 </head>
 
@@ -26,12 +26,12 @@
     <div class="bg-light border-right" id="sidebar-wrapper" >
       <div class="sidebar-heading">DANAHER</div>
       <div class="list-group" >
-        <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-home sidebar-icon" aria-hidden="true"></i>Home</a>
-        <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-folder sidebar-icon" aria-hidden="true"></i>My Files</a>
-        <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-star sidebar-icon" aria-hidden="true"></i>Favorites</a>
-        <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-trash-o sidebar-icon" aria-hidden="true"></i>Trash</a>
-        <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-user sidebar-icon" aria-hidden="true"></i>My Account</a>
-        <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-gear sidebar-icon" aria-hidden="true"></i>Settings</a>
+        <a href="home.html" class="list-group-item list-group-item-action"><i class="fa fa-home sidebar-icon" aria-hidden="true"></i>Home</a>
+        <a href="myFiles.html" class="list-group-item list-group-item-action"><i class="fa fa-folder sidebar-icon" aria-hidden="true"></i>My Files</a>
+        <a href="favorites.html" class="list-group-item list-group-item-action"><i class="fa fa-star sidebar-icon" aria-hidden="true"></i>Favorites</a>
+        <a href="trash.html" class="list-group-item list-group-item-action"><i class="fa fa-trash-o sidebar-icon" aria-hidden="true"></i>Trash</a>
+        <a href="myAccount.html" class="list-group-item list-group-item-action"><i class="fa fa-user sidebar-icon" aria-hidden="true"></i>My Account</a>
+        <a href="settings.html" class="list-group-item list-group-item-action"><i class="fa fa-gear sidebar-icon" aria-hidden="true"></i>Settings</a>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -77,15 +77,52 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Simple Sidebar</h1>
-        <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+        <h1 class="mt-4">Home</h1>
+        
+        <div class="row">
+          <div class="column col-lg-2">
+            <div class="card">
+              <i class="fa fa-folder fa-5x"></i>
+              <div class="container">
+                <h4><b>2018</b></h4>
+              </div>
+            </div>
+          </div>
+          <div class="column col-lg-2">
+            <div class="card">
+              <i class="fa fa-folder fa-5x"></i>
+              <div class="container">
+                <h4><b>2019</b></h4>
+              </div>
+            </div>
+          </div>
+          <div class="column col-lg-2">
+            <div class="card">
+              <i class="fa fa-folder fa-5x"></i>
+              <div class="container">
+                <h4><b>2020</b></h4>
+              </div>
+            </div>
+          </div>
+          <div class="column col-lg-2">
+            <div class="card">
+              <i class="fa fa-folder fa-5x"></i>
+              <div class="container">
+                <h4><b>2021</b></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p> -->
       </div>
     </div>
     <!-- /#page-content-wrapper -->
 
   </div>
   <!-- /#wrapper -->
+
+  
 
 <div class="sticky-bx">
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload">
@@ -167,9 +204,9 @@
 </div>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="js/dragndrop.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/dragndrop.js"></script>
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
