@@ -35,7 +35,7 @@ function getFoldersContents() {
         res = JSON.parse(res)
         document.getElementById("folder_name").innerHTML = res["name"];
 
-        console.log(res)
+        displayUploadCreate(res["created_by"]);
 
         contents_str = ""
 
@@ -92,4 +92,14 @@ function openFolder(id) {
     console.log(id)
     window.localStorage.setItem("parent", id);
     window.location.replace("./folderContents.html")
+}
+
+function displayUploadCreate(created_by) {
+    user = JSON.parse(window.localStorage.getItem("user"));
+    if (created_by == user["id"]) {
+        document.getElementById("upload_create").style.display = "block";
+    }
+    else {
+        document.getElementById("upload_create").style.display = "none";
+    }
 }
