@@ -6,9 +6,11 @@
  */
 :root {
   --blue: #007bff;
+  --blue-hover: #0056b3;
+  --blue-focus: #0069d9;
   --indigo: #6610f2;
-  --purple: #6f42c1;
-  --pink: #e83e8c;
+  --purple: #7579ff;
+  --pink: #b224ef;
   --red: #dc3545;
   --orange: #fd7e14;
   --yellow: #ffc107;
@@ -153,13 +155,13 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: var(--blue);
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #0056b3;
+  color: var(--blue-hover);
   text-decoration: underline;
 }
 
@@ -2522,11 +2524,12 @@ textarea.form-control {
 .btn:hover {
   color: #212529;
   text-decoration: none;
+  box-shadow: 5px 10px 10px 5px rgba(0, 123, 255, 0.25);
 }
 
 .btn:focus, .btn.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
 
 .btn.disabled, .btn:disabled {
@@ -2544,14 +2547,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: var(--blue);
+  border-color: var(--blue);
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
+  background-color: var(--blue-hover);
+  border-color: var(--blue-hover);
 }
 
 .btn-primary:focus, .btn-primary.focus {

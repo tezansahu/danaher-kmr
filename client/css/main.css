@@ -28,6 +28,8 @@
 
 
 
+
+
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
@@ -459,11 +461,12 @@ iframe {
 }
 
 .login100-form-btn:hover {
-  color: #fff;
+  color: #b224ef;
+  box-shadow: 5px 20px 20px 5px rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(156 39 176 / 40%);
 }
 
 .login100-form-btn:hover:before {
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 
