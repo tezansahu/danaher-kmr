@@ -66,10 +66,10 @@
                 User Name
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">My Profile</a>
-                <a class="dropdown-item" href="#">Reset Password</a>
+                <a class="dropdown-item" href="myAccount.html">My Account</a>
+                <a class="dropdown-item" href="settings.html">Settings</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Logout</a>
+                <a class="dropdown-item" href="../index.html" data-toggle="modal" data-target="#logoutModal">Logout</a>
               </div>
             </li>
           </ul>
@@ -77,42 +77,8 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Home</h1>
+        <h1 class="mt-4">Settings</h1>
         
-        <div class="row">
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2018</b></h4>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2019</b></h4>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2020</b></h4>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2021</b></h4>
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p> -->
       </div>
@@ -122,86 +88,27 @@
   </div>
   <!-- /#wrapper -->
 
-  
 
-<div class="sticky-bx">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload">
-  <div class="hover-bx">
-    <div class="ico-bx" id="sbx1">
-      <i class="fa fa-2x fa-upload" style="color: white;"></i>
-    </div>
-    <div class="ico-txt" id="sbt1">
-      <span>Upload Files</span>
-    </div>
-  </div>
-</button>
-  <br>
-  <br>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">
-  <div class="hover-bx">
-    <div class="ico-bx" id="sbx2">
-      <i class="fa fa-2x fa-folder-o" style="color: white;"></i>
-    </div>
-    <div class="ico-txt" id="sbt2">
-      <span>Create New Folder</span>
-    </div>
-  </div>
-</button>
-</div>
-
-<!-- Modal for upload-->
-<div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" >
-    <div class="modal-content" >
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle" style="align-items: center;">Upload Files and Folder</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="height: 400px;">
-        <div id="drop-area">
-          <form class="my-form">
-            <p>Upload multiple files with the file dialog or by dragging and dropping them into the dashed region</p>
-            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-            <label class="button" for="fileElem" >Select Files</label>
-          </form>
-          <div id="gallery"></div>
+    <!-- Logout modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Log Out</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to logout ?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary">Logout</button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal for create-->
-<div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Enter Folder Name</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Create</button>
-      </div>
-    </div>
-  </div>
-</div>
 
   <!-- Bootstrap core JavaScript -->
   <script src="../vendor/jquery/jquery.min.js"></script>
