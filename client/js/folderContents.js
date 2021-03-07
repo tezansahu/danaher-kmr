@@ -96,8 +96,12 @@ function openFolder(id) {
 
 function displayUploadCreate(created_by) {
     user = JSON.parse(window.localStorage.getItem("user"));
-    if (created_by == user["id"]) {
+    // console.log(created_by)
+    if (created_by == user["id"] || created_by == null) {
         document.getElementById("upload_create").style.display = "block";
+        if (created_by == null) {
+            document.getElementById("upload_files").style.display = "none";
+        }
     }
     else {
         document.getElementById("upload_create").style.display = "none";
