@@ -27,7 +27,7 @@ def create_user(db: Session, user: schemas.UserRegister):
     return db_user
 
 def update_user_passwd(db: Session, email_id: str, new_passwd_hashed: str):
-    db.query(models.User).filter(models.User.email_id==email_id).update({models.User.passwd_hashwd: new_passwd_hashed})
+    db.query(models.User).filter(models.User.email_id==email_id).update({models.User.passwd_hashed: new_passwd_hashed})
     db.commit()
     db_user = db.query(models.User).filter(models.User.email_id == email_id).first()
     return db_user

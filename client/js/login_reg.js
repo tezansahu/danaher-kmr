@@ -3,8 +3,7 @@ function doPost(url, body, callback){
   xmlHttp.onreadystatechange = function() { 
       if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
         callback(xmlHttp.responseText);
-      }
-          
+      }    
   }
   xmlHttp.open("POST", url, true); // true for asynchronous 
   xmlHttp.send(body);

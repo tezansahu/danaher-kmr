@@ -89,19 +89,19 @@
                       <!-- <p class="card-category"></p> -->
                     </div>
                     <div class="card-body">
-                      <form>
+                      <div>
                         <div class="row">
                           
                           <div class="col-md-12">
                             <div class="form-group">
                               <label class="bmd-label-floating">Name</label>
-                              <input type="text" class="form-control">
+                              <input type="text" class="form-control" id="name" disabled>
                             </div>
                           </div>
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label class="bmd-label-floating">Email address</label>
-                              <input type="email" class="form-control">
+                              <label class="bmd-label-floating">Email ID</label>
+                              <input type="email" class="form-control" id="email" disabled>
                             </div>
                           </div>
                         </div>
@@ -110,7 +110,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label class="bmd-label-floating">OpCo</label>
-                              <input type="text" class="form-control">
+                              <input type="text" class="form-control" id="opco">
                             </div>
                           </div>
                         </div>
@@ -118,14 +118,14 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label class="bmd-label-floating">Contact Number</label>
-                              <input type="number" class="form-control">
+                              <input type="text" class="form-control" id="contact">
                             </div>
                           </div>
                           
                         </div>
-                        <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                        <button type="submit" class="btn btn-primary pull-right" onclick="updateProfile()">Update Profile</button>
                         <div class="clearfix"></div>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -138,24 +138,24 @@
                     </div> -->
                     <div class="card-body">
                         <h4 class="class-category text-gray">Reset Password</h4>
-                        <form>
+                        <div>
                           <div class="row">
                             
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label class="bmd-label-floating">Enter current password</label>
-                                <input type="password" class="form-control">
+                                <input type="password" class="form-control" id="passwd_old">
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label class="bmd-label-floating">Enter new password</label>
-                                <input type="password" class="form-control">
+                                <input type="password" class="form-control" id="passwd_new">
                               </div>
                             </div>
                           </div>
                           
-                          <button type="submit" class="btn btn-primary pull-right">Reset</button>
+                          <button type="submit" class="btn btn-primary pull-right" onclick="updatePassword()">Reset</button>
                           <div class="clearfix"></div>
                         </form>
                       </div>
@@ -194,10 +194,11 @@
     </div>
   </div>
 
+  <script src="../js/myAccount.js"></script>
   <!-- Bootstrap core JavaScript -->
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/dragndrop.js"></script>
+  <!-- <script src="../js/dragndrop.js"></script> -->
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
