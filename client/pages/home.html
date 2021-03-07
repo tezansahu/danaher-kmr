@@ -123,18 +123,6 @@
   <!-- /#wrapper -->
 
   <div class="sticky-bx" id="upload_create">
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload">
-    <div class="hover-bx">
-      <div class="ico-bx" id="sbx1">
-        <i class="fa fa-2x fa-upload" style="color: white;"></i>
-      </div>
-      <div class="ico-txt" id="sbt1">
-        <span>Upload Files</span>
-      </div>
-    </div>
-  </button>
-    <br>
-    <br> -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">
     <div class="hover-bx">
       <div class="ico-bx" id="sbx2">
@@ -182,13 +170,13 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Enter Folder Name</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" class="form-control" id="folder_name">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Create</button>
+        <button type="button" class="btn btn-primary" onclick="createFolder()">Create</button>
       </div>
     </div>
   </div>
@@ -196,6 +184,8 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="../js/home.js"></script>
+  <script src="../js/createUpload.js"></script>
+  
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Menu Toggle Script -->
