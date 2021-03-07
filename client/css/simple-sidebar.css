@@ -4,6 +4,17 @@
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
 
+ :root{
+  --purple: #7579ff;
+  --pink: #b224ef;
+ }
+
+ h5{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+ }
+
  #wrapper {
     overflow-x: hidden;
  }
@@ -105,7 +116,7 @@
   .hover-bx {
     direction: ltr;
     display: inline-block;
-    background-color: #007BFF;
+    background-color: var(--pink);
     white-space: nowrap;
     border-radius: 5%; /* Rounded corners on the top right and bottom right side */
     transition: 3s; /* Add transition on hover */
