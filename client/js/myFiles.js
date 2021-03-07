@@ -31,12 +31,17 @@ function getUserFolders() {
         else{
             for (let i = 0; i < res.length; i++){
                 folder_str += `
-                <div class="column col-lg-3" style="cursor: pointer;" onclick="openFolder(${res[i]["id"]})">
-                    <div class="card">
-                    <i class="fa fa-folder-o fa-5x"></i>
-                    <div class="container">
-                        <h5><b>${res[i]["name"]}</b></h5>
-                    </div>
+                <div class="column col-lg-3">
+                    <div class="card" style="position: relative; cursor: pointer;">
+                        <div class="dropdown fa fa-ellipsis-v" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="position: absolute; top: 8px; right: 8px;"></div>
+                        <div class="dropdown-menu dropdown-primary">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#rename"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Rename</a>
+                            <a class="dropdown-item" href="#"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Add to Trash</a>
+                        </div>
+                        <i class="fa fa-folder-o fa-5x" style="cursor: pointer;" onclick="openFolder(${res[i]["id"]})"></i>
+                        <div class="container" style="cursor: pointer;" onclick="openFolder(${res[i]["id"]})">
+                            <h5><b>${res[i]["name"]}</b></h5>
+                        </div>
                     </div>
                 </div>
                 `
