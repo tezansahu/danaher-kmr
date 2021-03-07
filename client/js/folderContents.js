@@ -42,8 +42,8 @@ function getFoldersContents() {
         if (res["contents"].length == 0) {
             document.getElementById("folders_contents").style.textAlign = "center";
             document.getElementById("folders_contents").innerHTML = `
-            <div style="text-align: center;">
-                <h5>This folder is empty.</h5>
+            <div style="text-align: center">
+                <h6>This folder is empty.</h6>
             </div>
             `
         }
@@ -55,7 +55,7 @@ function getFoldersContents() {
                         <div class="card">
                         <i class="fa ${default_folder_icon} fa-5x"></i>
                         <div class="container">
-                            <h4><b>${res["contents"][i]["name"]}</b></h4>
+                            <h5><b>${res["contents"][i]["name"]}</b></h5>
                         </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ function getFoldersContents() {
                         <div class="card">
                         <i class="fa ${icon} fa-5x"></i>
                         <div class="container">
-                            <h4><b>${res["contents"][i]["name"]}</b></h4>
+                            <h5><b>${res["contents"][i]["name"]}</b></h5>
                         </div>
                         </div>
                     </div>

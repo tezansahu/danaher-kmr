@@ -24,7 +24,7 @@ function getRootFolders(){
                 <div class="card">
                 <i class="fa fa-folder fa-5x"></i>
                 <div class="container">
-                    <h4><b>${res[i]["name"]}</b></h4>
+                    <h5><b>${res[i]["name"]}</b></h5>
                 </div>
                 </div>
             </div>

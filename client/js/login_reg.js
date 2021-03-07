@@ -58,10 +58,8 @@ function register() {
 
 function loadUser(){
   user = JSON.parse(window.localStorage.getItem('user'));
-  console.log(user);
-  console.log("abc")
   if(user != null){
-    window.location.replace("./home.html");
+    window.location.replace("./pages/home.html");
   }
 }
 
