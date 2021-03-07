@@ -26,7 +26,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'My Files',
+    title: 'My Folders',
     icon: 'shopping-cart-outline',
     link: '/pages/my-files',
   },
