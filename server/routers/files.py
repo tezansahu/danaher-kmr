@@ -10,6 +10,8 @@ from utils import utils
 import shutil
 from datetime import date
 import os
+import mimetypes
+import base64
 
 router = APIRouter()
 
@@ -21,7 +23,17 @@ async def download_file(id: int, db: Session = Depends(utils.get_db)):
     if not db_file or db_file.is_folder:
         raise HTTPException(status_code=404, detail="File not found")
     
-    return FileResponse(path=db_file.abs_path, filename=db_file.name)
+    with open(db_file.abs_path, "rb") as f:
+        encoded_string = base64.b64encode(f.read())
+        mime = mimetypes.guess_type(db_file.abs_path)
+
+        resp = {
+            "mime" : mime[0],
+            "name": db_file.name,
+            "file": encoded_string
+        }
+    return resp
+    # return FileResponse(path=db_file.abs_path, filename=db_file.name, headers={"content-type": "octet/stream"})
 
 @router.get("/file/{id}", response_model=schemas.FileInfo)
 async def download_file(id: int, db: Session = Depends(utils.get_db)):
