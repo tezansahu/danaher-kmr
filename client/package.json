@@ -3,7 +3,7 @@
     "name": "startbootstrap-simple-sidebar",
     "version": "5.1.3",
     "scripts": {
-        "start": "node_modules/.bin/gulp watch"
+        "start": "gulp watch"
     },
     "description": "A simple sidebar navigation HTMl template built with Bootstrap",
     "keywords": [
