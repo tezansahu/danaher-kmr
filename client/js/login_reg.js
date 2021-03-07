@@ -13,15 +13,13 @@ function doPost(url, body, callback){
 function login(){
     let email = document.getElementById("email").value;
     let passwd = document.getElementById("pass").value;
-    url =  "http://localhost:8000/users/login"
-
     ans = JSON.stringify({
         "email_id": email,
         "passwd_hashed": passwd
       })      
     console.log(ans)
 
-    doPost(url, ans, (res, err) => {
+    doPost("http://localhost:8000/users/login", ans, (res, err) => {
       if (err) {
         console.err(err);
       }
@@ -33,22 +31,21 @@ function login(){
 }
 
 function register() {
-    let name = document.getElementById("username").value;
+    let name = document.getElementById("name").value;
     console.log(name)
     let email = document.getElementById("emailid").value;
     let opco = document.getElementById("opco").value;
     let contact = document.getElementById("contact").value;
-    let pswd = document.getElementById("pass").value;
-    let data = {"email_id": email,
-                "passwd_hashed": pswd,
-                "name": name,
-                "op_co": opco,
-                "contact_no": contact
-                };
+    let pswd = document.getElementById("passwd").value;
+    let data = JSON.stringify({"email_id": email,
+      "passwd_hashed": pswd,
+      "name": name,
+      "op_co": opco,
+      "contact_no": contact
+    });
     console.log(data);
 
-    Url = "http://localhost:8000/users/register"
-    doPost(Url, ans, (res, err) => {
+    doPost("http://localhost:8000/users/register", data, (res, err) => {
       if (err) {
         console.err(err);
       }
@@ -64,7 +61,7 @@ function loadUser(){
   console.log(user);
   console.log("abc")
   if(user != null){
-    window.location.replace("./pages/home.html");
+    window.location.replace("./home.html");
   }
 }
 

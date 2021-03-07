@@ -45,7 +45,7 @@ async def create_folder(folder: schemas.FileBase, db: Session = Depends(utils.ge
         parent_folder = crud.get_folder_by_name_in_parent(db, name=parent_name, parent=None)
         if not parent_folder:
             # Create the standard parent folder for this month on disk
-            parent_abs_path = os.join(root_path, parent_name)
+            parent_abs_path = os.path.join(root_path, parent_name)
             os.makedirs(parent_abs_path)
 
             # Add an entry to the database

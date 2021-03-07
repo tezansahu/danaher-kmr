@@ -11,16 +11,13 @@ function doCall(url, callback){
 function logout(){
     console.log("Logout");
     window.localStorage.removeItem("user");
-    location.reload();
+    window.localStorage.removeItem("parent");
+    window.location.replace("../index.html");
 }
 
-function displayCreateUpload(){
-    user = JSON.parse(window.localStorage.getItem('user'));
-
-    if(user != null){
-        parent = window.localStorage.getItem('parent');
-        doCall(`http://localhost/folders/folder/${parent}`, (res) => {
-            
-        })
-    }
+function showNameInHeader() {
+    user = JSON.parse(window.localStorage.getItem("user"));
+    document.getElementById("navbarDropdown").innerHTML = user["name"]
 }
+
+showNameInHeader()
