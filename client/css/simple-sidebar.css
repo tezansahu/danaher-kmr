@@ -70,7 +70,7 @@
 }
 
 .search_input{
-  color: rgb(0, 0, 0);
+  color: var(--pink);
   border: 0;
   outline: 0;
   background: none;
@@ -83,7 +83,7 @@
   .searchbar:hover > .search_input{
   padding: 0 10px;
   width: 500px;
-  caret-color:rgb(0, 0, 0);
+  caret-color: var(--pink);
   transition: width 0.4s linear;
   }
 
@@ -100,7 +100,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  color:rgb(245, 0, 0);
+  color:var(--pink);
   text-decoration:none;
   }
 
@@ -116,7 +116,7 @@
   .hover-bx {
     direction: ltr;
     display: inline-block;
-    background-color: var(--pink);
+    /* background-color: var(--pink); */
     white-space: nowrap;
     border-radius: 5%; /* Rounded corners on the top right and bottom right side */
     transition: 3s; /* Add transition on hover */
@@ -243,3 +243,13 @@ i {
 /* img {
   border-radius: 5px 5px 0 0;
 } */
+
+.btn-primary {
+  background-color: var(--pink);
+  border-color: var(--pink);
+}
+
+.btn-primary:hover{
+  background-color: var(--purple);
+  border-color: var(--purple);
+}
