@@ -26,7 +26,7 @@ load_dotenv()
 models.Base.metadata.create_all(bind=engine)
 
 origins = [
-    "http://localhost:4200",
+    "http://localhost:3000",
 ]
 
 app = FastAPI()
