@@ -4,6 +4,24 @@
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
 
+ .theme-light {
+  --color-primary: #0060df;
+  --color-secondary: rgba(255,255,255,0.9);
+  --color-accent: #fd6f53;
+  --font-color: #000000;
+  --color-card: #f1f1f1;
+}
+.theme-dark {
+  --color-primary: #17ed90;
+  --color-secondary: #25133b;
+  --color-accent: #12cdea;
+  --font-color: #ffffff;
+  --color-card: #a9a9a9;
+}
+html, body {
+  background-color: var(--color-secondary);
+}
+
  :root{
   --purple: #7579ff;
   --pink: #b224ef;
@@ -26,7 +44,7 @@
   -moz-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
-  /* background: -webkit-linear-gradient(top, #7579ff, #b224ef); */
+  background: -webkit-linear-gradient(top, var(--color-secondary), var(--color-secondary));
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -45,6 +63,7 @@
 .sidebar-icon {
   padding: 0.875rem 1.25rem;
   font-size: 1.3rem;
+}
 }
 #page-content-wrapper {
   min-width: 100vw;
@@ -175,18 +194,17 @@
   .button {
     display: inline-block;
     padding: 10px;
-    background: #ccc;
+    background: var(--color-secondary);
     cursor: pointer;
     border-radius: 5px;
     border: 1px solid #ccc;
   }
   .button:hover {
-    background: #ddd;
+    background: var(--color-secondary);
   }
   #fileElem {
     display: none;
   }
-
 
   * {
     box-sizing: border-box;
@@ -213,7 +231,7 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   padding: 16px;
   text-align: center;
-  background-color: #f1f1f1;
+  background-color: var(--color-card);
 }
 
 i {

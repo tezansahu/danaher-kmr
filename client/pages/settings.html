@@ -15,6 +15,7 @@
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="../css/simple-sidebar.css" rel="stylesheet">
+  <link href="../theme.css" rel="stylesheet">
 
 </head>
 
@@ -76,7 +77,8 @@
 
       <div class="container-fluid">
         <!-- <h1 class="mt-4">Settings</h1> -->
-        
+        <h1>Theme Switcher</h1>
+        <button id="switch" onclick="toggleTheme()">Switch</button>
         <!-- <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p> -->
       </div>
@@ -113,6 +115,7 @@
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../js/dragndrop.js"></script>
+  <script src="../js/theme.js"></script>
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
