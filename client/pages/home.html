@@ -27,7 +27,7 @@
       <div class="sidebar-heading">DANAHER</div>
       <div class="list-group" >
         <a href="home.html" class="list-group-item list-group-item-action"><i class="fa fa-home sidebar-icon" aria-hidden="true"></i>Home</a>
-        <a href="myFiles.html" class="list-group-item list-group-item-action"><i class="fa fa-folder sidebar-icon" aria-hidden="true"></i>My Files</a>
+        <a href="myFiles.html" class="list-group-item list-group-item-action"><i class="fa fa-folder sidebar-icon" aria-hidden="true"></i>My Folders</a>
         <a href="favorites.html" class="list-group-item list-group-item-action"><i class="fa fa-star sidebar-icon" aria-hidden="true"></i>Favorites</a>
         <a href="trash.html" class="list-group-item list-group-item-action"><i class="fa fa-trash-o sidebar-icon" aria-hidden="true"></i>Trash</a>
         <a href="myAccount.html" class="list-group-item list-group-item-action"><i class="fa fa-user sidebar-icon" aria-hidden="true"></i>My Account</a>
@@ -77,10 +77,10 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Home</h1>
+        <h1 class="mt-4 mb-4" style="margin-bottom: 20px;">Home</h1>
         
-        <div class="row">
-          <div class="column col-lg-2">
+        <div class="row" id="home_folders">
+          <!-- <div class="column col-lg-2">
             <div class="card">
               <i class="fa fa-folder fa-5x"></i>
               <div class="container">
@@ -111,7 +111,7 @@
                 <h4><b>2021</b></h4>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p> -->
@@ -144,6 +144,7 @@
     </div>
 
   <!-- Bootstrap core JavaScript -->
+  <script src="../js/home.js"></script>
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Menu Toggle Script -->
@@ -153,6 +154,8 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
+
+  
 
 </body>
 
