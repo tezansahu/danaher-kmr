@@ -221,7 +221,7 @@ function rename(){
         console.log(body)
         is_folder = window.localStorage.getItem("curr_id_is_folder")
         console.log(is_folder)
-        if (is_folder == true) {
+        if (is_folder == "true") {
             url = "http://localhost:8000/folders/rename"
         }
         else {
