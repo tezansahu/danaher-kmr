@@ -15,6 +15,7 @@
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="../css/simple-sidebar.css" rel="stylesheet">
+  <link href="../css/theme.css" rel="stylesheet">
 
 </head>
 
@@ -30,8 +31,13 @@
         <a href="myFiles.html" class="list-group-item list-group-item-action"><i class="fa fa-folder sidebar-icon" aria-hidden="true"></i>My Folders</a>
         <!-- <a href="favorites.html" class="list-group-item list-group-item-action"><i class="fa fa-star sidebar-icon" aria-hidden="true"></i>Favorites</a> -->
         <a href="trash.html" class="list-group-item list-group-item-action"><i class="fa fa-trash-o sidebar-icon" aria-hidden="true"></i>Trash</a>
-        <a href="myAccount.html" class="list-group-item list-group-item-action"><i class="fa fa-user sidebar-icon" aria-hidden="true"></i>My Account</a>
-        <a href="settings.html" class="list-group-item list-group-item-action"><i class="fa fa-gear sidebar-icon" aria-hidden="true"></i>Settings</a>
+        <a href="myAccount.html" class="list-group-item list-group-item-action"><i class="fa fa-user sidebar-icon" aria-hidden="true"></i>My Account</a>      </div>
+      <div class="mt-4">
+        <label class="switch">
+          <input type="checkbox" id="themetoggle" onchange="toggleTheme()" />
+          <span class="slider round"></span>
+        </label>
+        <h5>Dark Mode</h5>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -65,7 +71,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="myAccount.html">My Account</a>
-                <a class="dropdown-item" href="settings.html">Settings</a>
+                <!-- <a class="dropdown-item" href="settings.html">Settings</a> -->
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="../index.html" data-toggle="modal" data-target="#logoutModal">Logout</a>
               </div>
