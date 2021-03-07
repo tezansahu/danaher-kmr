@@ -48,12 +48,17 @@ html, body {
 }
 
 #sidebar-wrapper .sidebar-heading {
-  padding: 0.45rem 0.45rem;
+  /* padding: 0.45rem 0.45rem; */
   font-size: 1.8rem;
   display: flex;
   justify-content: center;
 }
 
+.org-icon{
+  width: 240px; 
+  height:60px; 
+  position: relative;
+}
 #sidebar-wrapper .list-group {
   width: 15rem;
   font-size: 1.2rem;
@@ -64,7 +69,7 @@ html, body {
   padding: 0.875rem 1.25rem;
   font-size: 1.3rem;
 }
-}
+
 #page-content-wrapper {
   min-width: 100vw;
 }
@@ -105,7 +110,17 @@ html, body {
   caret-color: var(--pink);
   transition: width 0.4s linear;
   }
-
+  .search_dropdown{
+    border: 0;
+    outline: 0;
+    width: 0;
+    line-height: 40px;
+  }
+  .searchbar:hover > .search_dropdown{
+    padding: 0 10px;
+  width: 50px;
+    transition: width 0.4s linear;
+  }
   .searchbar:hover > .search_icon{
   background: rgb(53, 53, 53);
   color: #ffffff;
@@ -288,4 +303,16 @@ i {
   justify-content: center; 
   display: flex;
   margin-top: 40px; 
+}
+
+.list-group{
+  border-radius: 0;
+}
+
+.nav-item-hidden{
+  display: none;
+}
+
+.searchbar:hover .nav-item-hidden {
+  display: inline-block;
 }
