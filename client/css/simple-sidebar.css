@@ -31,6 +31,7 @@ html, body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--font-color);
  }
 
  #wrapper {
@@ -52,6 +53,7 @@ html, body {
   font-size: 1.8rem;
   display: flex;
   justify-content: center;
+  color: var(--font-color);
 }
 
 #sidebar-wrapper .list-group {
@@ -63,7 +65,6 @@ html, body {
 .sidebar-icon {
   padding: 0.875rem 1.25rem;
   font-size: 1.3rem;
-}
 }
 #page-content-wrapper {
   min-width: 100vw;
@@ -126,7 +127,7 @@ html, body {
   .sticky-bx {
     position: fixed;
     right: 0px;
-    top: 75%;
+    top: 80%;
     padding: 16px;
     width: 60px;
     direction: rtl;
@@ -178,6 +179,7 @@ html, body {
   }
   p {
     margin-top: 0;
+    /* color : var(--font-color); */
   }
   .my-form {
     margin-bottom: 10px;
@@ -270,22 +272,4 @@ i {
 .btn-primary:hover{
   background-color: var(--purple);
   border-color: var(--purple);
-}
-
-.details-left{
-  display: inline; 
-  float: left;
-}
-
-.details-right{
-  display: inline; 
-  text-align: right;
-  float: left;
-}
-
-.details-icon{
-  float: left;
-  justify-content: center; 
-  display: flex;
-  margin-top: 40px; 
 }

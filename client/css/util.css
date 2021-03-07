@@ -1,3 +1,18 @@
+.theme-light {
+	--color-primary: #0060df;
+	--color-secondary: rgba(255,255,255,0.9);
+	--color-accent: #fd6f53;
+	--font-color: #000000;
+	--color-card: #f1f1f1;
+}
+.theme-dark {
+	--color-primary: #17ed90;
+	--color-secondary: #25133b;
+	--color-accent: #12cdea;
+	--font-color: #ffffff;
+	--color-card: #a9a9a9;
+  }
+
 /*[ FONT SIZE ]
 ///////////////////////////////////////////////////////////
 */
@@ -2343,11 +2358,12 @@
 .op-0-9 {opacity: 0.9;}
 .op-1-0 {opacity: 1;}
 
+
 /*[ Background ]
 -----------------------------------------------------------
 */
-.bgwhite {background-color: white;}
-.bgblack {background-color: black;}
+.bg-white {background-color: white;}
+.bg-black {background-color: black;}
 
 
 
