@@ -1,0 +1,234 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template/simple-sidebar)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+
+ #wrapper {
+    overflow-x: hidden;
+ }
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  /* background: -webkit-linear-gradient(top, #7579ff, #b224ef); */
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.45rem 0.45rem;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+  font-size: 1.2rem;
+  justify-content: center;
+}
+
+.sidebar-icon {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.3rem;
+}
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+.search_input{
+  color: rgb(0, 0, 0);
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 0;
+  caret-color:transparent;
+  line-height: 40px;
+  transition: width 0.4s linear;
+  }
+
+  .searchbar:hover > .search_input{
+  padding: 0 10px;
+  width: 500px;
+  caret-color:rgb(0, 0, 0);
+  transition: width 0.4s linear;
+  }
+
+  .searchbar:hover > .search_icon{
+  background: rgb(53, 53, 53);
+  color: #ffffff;
+  }
+
+  .search_icon{
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color:rgb(245, 0, 0);
+  text-decoration:none;
+  }
+
+  .sticky-bx {
+    position: fixed;
+    right: 0px;
+    top: 80%;
+    padding: 16px;
+    width: 60px;
+    direction: rtl;
+    
+  }
+  .hover-bx {
+    direction: ltr;
+    display: inline-block;
+    background-color: #007BFF;
+    white-space: nowrap;
+    border-radius: 5%; /* Rounded corners on the top right and bottom right side */
+    transition: 3s; /* Add transition on hover */
+
+  }
+  .ico-bx {
+    display: inline-block;
+    padding: 8px;
+    transition: 3s; /* Add transition on hover */
+  }
+  .ico-txt {
+    /* margin-left: 10px; */
+    margin-right: 10px;
+    justify-content: center;
+    padding: 0 6px;
+    display: none;
+    color: white;
+    font-size: 16px;
+  }
+  .hover-bx:hover .ico-txt {
+    display: inline-block;
+    position: relative;
+    transition: 3s; /* Add transition on hover */
+  }
+
+  #drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 20px;
+    width: inherit;
+    height: 360px;
+    font-family: sans-serif;
+    /* margin: 100px auto; */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #drop-area.highlight {
+    border-color: purple;
+  }
+  p {
+    margin-top: 0;
+  }
+  .my-form {
+    margin-bottom: 10px;
+  }
+  #gallery {
+    margin-top: 10px;
+  }
+  #gallery img {
+    width: 150px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .button {
+    display: inline-block;
+    padding: 10px;
+    background: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  .button:hover {
+    background: #ddd;
+  }
+  #fileElem {
+    display: none;
+  }
+
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Float four columns side by side */
+.column {
+  float: left;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+i {
+  padding-bottom: 5px;
+}
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    /* width: 100%; */
+    /* display: block; */
+    margin-bottom: 20px;
+  }
+}
+
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  /* Add some padding inside the card container */
+  .container {
+    padding: 2px 16px;
+  }
+
+  /* Add rounded corners to the top left and the top right corner of the image inside the card*/
+/* img {
+  border-radius: 5px 5px 0 0;
+} */
