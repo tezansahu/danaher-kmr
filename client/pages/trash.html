@@ -87,39 +87,8 @@
         <div class="card mt-3" style="background-color: gainsboro; box-shadow: none;">
           <i class="fa fa-trash-o fa-2x"></i> Items in the trash will be automatically deleted after 10 days.
         </div>
-        <div class="row mt-3">
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2018</b></h4>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2019</b></h4>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2020</b></h4>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2021</b></h4>
-              </div>
-            </div>
-          </div>
+        <div class="row mt-3" id="trash_folders">
+            
         </div>
         <!-- <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p> -->
@@ -129,6 +98,28 @@
 
   </div>
   <!-- /#wrapper -->
+
+  <!-- Delete Permanently modal -->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Permanently Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>The file/folder will be permanently deleted. Do you wish to proceed?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="permanentDelete()">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
 
     <!-- Logout modal -->
@@ -151,11 +142,12 @@
           </div>
         </div>
       </div>
-
+  
+  <script src="../js/trash.js"></script>
+  <script src="../js/utils.js"></script>
   <!-- Bootstrap core JavaScript -->
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/dragndrop.js"></script>
   <script src="../js/theme.js"></script>
   <!-- Menu Toggle Script -->
   <script>

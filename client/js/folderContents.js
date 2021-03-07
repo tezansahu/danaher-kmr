@@ -27,9 +27,21 @@ function doCall(url, callback){
     xmlHttp.send(null);
 }
 
+function doPatch(url, body, callback){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+          callback(xmlHttp.responseText);
+        }    
+    }
+    xmlHttp.open("PATCH", url, true); // true for asynchronous 
+    xmlHttp.send(body);
+}
+
 
 function getFoldersContents() {
     curr_folder_id = window.localStorage.getItem("parent");
+    user = JSON.parse(window.localStorage.getItem("parent"));
     url = `http://localhost:8000/folders/folder/${curr_folder_id}`;
     doCall(url, (res) => {
         res = JSON.parse(res)
@@ -49,12 +61,25 @@ function getFoldersContents() {
         }
         else{
             for (let i = 0; i < res["contents"].length; i++){
+
+                delete_rename_str = "";
+                if (res["contents"][i]["created_by"] == user["id"]) {
+                    delete_rename_str = `
+                    <div class="dropdown fa fa-ellipsis-v" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="position: absolute; top: 8px; right: 8px;" onclick='setCurrId(${res["contents"][i]["id"]}, ${res["contents"][i]["is_folder"]})'></div>
+                    <div class="dropdown-menu dropdown-primary">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#rename"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Rename</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#trash"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Add to Trash</a>
+                    </div>
+                    `
+                }
+
                 if(res["contents"][i]["is_folder"]){
                     contents_str += `
-                    <div class="column col-lg-3" style="cursor: pointer;" onclick="openFolder(${res["contents"][i]["id"]})">
-                        <div class="card">
-                        <i class="fa ${default_folder_icon} fa-5x"></i>
-                        <div class="container">
+                    <div class="column col-lg-3" style="cursor: pointer;">
+                        <div class="card" style="position: relative;">
+                        ${delete_rename_str}
+                        <i class="fa ${default_folder_icon} fa-5x" onclick="openFolder(${res["contents"][i]["id"]})"></i>
+                        <div class="container" onclick="openFolder(${res["contents"][i]["id"]})">
                             <h5><b>${res["contents"][i]["name"]}</b></h5>
                         </div>
                         </div>
@@ -70,7 +95,8 @@ function getFoldersContents() {
                     }
                     contents_str += `
                     <div class="column col-lg-3" style="cursor: pointer;">
-                        <div class="card">
+                        <div class="card" style="position: relative;">
+                        ${delete_rename_str}
                         <i class="fa ${icon} fa-5x" data-toggle="modal" data-target="#fileDetails" onclick="getFileDetails(${res["contents"][i]["id"]})"></i>
                         <div class="container" data-toggle="modal" data-target="#fileDetails" onclick="getFileDetails(${res["contents"][i]["id"]})">
                             <h5><b>${res["contents"][i]["name"]}</b></h5>
@@ -96,12 +122,35 @@ function openFolder(id) {
 
 function displayUploadCreate(created_by) {
     user = JSON.parse(window.localStorage.getItem("user"));
-    if (created_by == user["id"]) {
+    // console.log(created_by)
+    if (created_by == user["id"] || created_by == null) {
         document.getElementById("upload_create").style.display = "block";
+        if (created_by == null) {
+            document.getElementById("upload_files").style.display = "none";
+        }
     }
     else {
         document.getElementById("upload_create").style.display = "none";
     }
+}
+
+function setCurrId(id, is_folder) {
+    console.log(id)
+    window.localStorage.setItem("curr_id", id);
+    window.localStorage.setItem("curr_id_is_folder", is_folder);
+
+    if (is_folder){
+        doCall(`http://localhost:8000/folders/folder/${id}`, (res) => {
+            res = JSON.parse(res);
+            document.getElementById("folder_name_trash").innerHTML = res["name"];
+        })
+    }
+    else {
+        doCall(`http://localhost:8000/files/file/${id}`, (res) => {
+            res = JSON.parse(res);
+            document.getElementById("folder_name_trash").innerHTML = res["name"];
+        })
+    }  
 }
 
 
@@ -155,5 +204,51 @@ function downloadFile() {
         a.download = download_res["name"];
         a.click();
         window.URL.revokeObjectURL(url);
+    })
+}
+
+function rename(){
+    new_name = document.getElementById("new_folder_name").value;
+    if (new_name != "") {
+        id = window.localStorage.getItem("curr_id");
+        created_by = JSON.parse(window.localStorage.getItem("user"))["id"];
+        body = JSON.stringify({
+            "id": id,
+            "created_by": created_by,
+            "new_name": new_name
+        })
+
+        console.log(body)
+        is_folder = window.localStorage.getItem("curr_id_is_folder")
+        console.log(is_folder)
+        if (is_folder == true) {
+            url = "http://localhost:8000/folders/rename"
+        }
+        else {
+            url = "http://localhost:8000/files/rename"
+        }
+        doPatch(url, body, (res, err) => {
+            if (err) {
+                console.err(err);
+            }
+            else {
+                window.location.reload();
+            }
+        })
+    }
+}
+
+function addToTrash() {
+    body = JSON.stringify({
+        "id": window.localStorage.getItem("curr_id"),
+        "created_by": JSON.parse(window.localStorage.getItem("user"))["id"]
+    })
+    doPatch("http://localhost:8000/trash/add", body, (res, err) => {
+        if (err) {
+            console.err(err);
+        }
+        else {
+            window.location.reload();
+        }
     })
 }
