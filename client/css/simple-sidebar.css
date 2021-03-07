@@ -107,7 +107,7 @@
   .sticky-bx {
     position: fixed;
     right: 0px;
-    top: 80%;
+    top: 75%;
     padding: 16px;
     width: 60px;
     direction: rtl;
@@ -254,3 +254,20 @@ i {
   border-color: var(--purple);
 }
 
+.details-left{
+  display: inline; 
+  float: left;
+}
+
+.details-right{
+  display: inline; 
+  text-align: right;
+  float: left;
+}
+
+.details-icon{
+  float: left;
+  justify-content: center; 
+  display: flex;
+  margin-top: 40px; 
+}
