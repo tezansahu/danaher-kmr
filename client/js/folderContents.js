@@ -71,8 +71,8 @@ function getFoldersContents() {
                     contents_str += `
                     <div class="column col-lg-3" style="cursor: pointer;">
                         <div class="card">
-                        <i class="fa ${icon} fa-5x"></i>
-                        <div class="container">
+                        <i class="fa ${icon} fa-5x" data-toggle="modal" data-target="#fileDetails" onclick="getFileDetails(${res["contents"][i]["id"]})"></i>
+                        <div class="container" data-toggle="modal" data-target="#fileDetails" onclick="getFileDetails(${res["contents"][i]["id"]})">
                             <h5><b>${res["contents"][i]["name"]}</b></h5>
                         </div>
                         </div>
@@ -102,4 +102,58 @@ function displayUploadCreate(created_by) {
     else {
         document.getElementById("upload_create").style.display = "none";
     }
+}
+
+
+function getSize(size) {
+    if (size < 1024) {
+        return `${size} B`
+    }
+    else if (size < 1024*1024) {
+        return `${(size/1024).toFixed(2)} KB`
+    }
+    else if (size < 1024*1024*1024) {
+        return `${(size/1024/1024).toFixed(2)} MB`
+    }
+    else {
+        return `${(size/1024/1024/1024).toFixed(2)} GB`
+    }
+}
+
+function getFileDetails(id) {
+    window.localStorage.setItem("curr_file", id);
+    doCall(`http://localhost:8000/files/file/${id}`, (res) => {
+        res = JSON.parse(res);
+
+        if (icons[res["file_type"]] != null){
+            icon = icons[res["file_type"]];
+        }
+        else {
+            icon = default_file_icon;
+        }
+        document.getElementById("file_icon").innerHTML = ` <i class="fa ${icon} fa-5x"></i>`;
+        document.getElementById("file_name").innerHTML = res["name"];
+        document.getElementById("file_size").innerHTML = getSize(res["size"]);
+        document.getElementById("file_created_on").innerHTML = res["created_on"];
+
+        doCall(`http://localhost:8000/users/user/${res["created_by"]}`, (res) => {
+            res = JSON.parse(res);
+            document.getElementById("file_creator").innerHTML = res["name"];
+        })
+    })
+}
+
+function downloadFile() {
+    file_id = window.localStorage.getItem("curr_file");
+    doCall(`http://localhost:8000/files/download/${file_id}`, (download_res) => {
+        download_res = JSON.parse(download_res)
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+        url = `data:${download_res["mime"]};base64,${download_res["file"]}`;
+        a.href = url;
+        a.download = download_res["name"];
+        a.click();
+        window.URL.revokeObjectURL(url);
+    })
 }

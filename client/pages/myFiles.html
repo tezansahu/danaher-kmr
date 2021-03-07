@@ -79,54 +79,7 @@
         <!-- <h1 class="mt-4 mb-4">My Folders</h1> -->
         
         <div class="row mt-3" id="my_folders">
-          <!-- <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder-o fa-5x"></i>
-              <div class="container">
-                <h5><b>Foldfdeafsafaer1</b></h5>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-file-word-o fa-5x"></i>
-              <div class="container">
-                <h5><b>a.docx</b></h5>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-file-image-o fa-5x"></i>
-              <div class="container">
-                <h5><b>b.jpg</b></h5>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-file-pdf-o fa-5x"></i>
-              <div class="container">
-                <h5><b>c.pdf</b></h5>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-file-video-o fa-5x"></i>
-              <div class="container">
-                <h5><b>c.mp4</b></h5>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-file-pdf-o fa-5x"></i>
-              <div class="container">
-                <h5><b>c.pdf</b></h5>
-              </div>
-            </div>
-          </div> -->
+          
         </div>
         <!-- <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p> -->
@@ -140,28 +93,16 @@
   
 
 <div class="sticky-bx" id="upload_create">
-  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#upload">
-  <div class="hover-bx">
-    <div class="ico-bx" id="sbx1">
-      <i class="fa fa-2x fa-upload" style="color: white;"></i>
-    </div>
-    <div class="ico-txt" id="sbt1">
-      <span>Upload Files</span>
-    </div>
-  </div>
-</button>
-  <br>
-  <br> -->
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">
-  <div class="hover-bx">
-    <div class="ico-bx" id="sbx2">
-      <i class="fa fa-2x fa-folder-o" style="color: white;"></i>
+    <div class="hover-bx">
+      <div class="ico-bx" id="sbx2">
+        <i class="fa fa-2x fa-folder-o" style="color: white;"></i>
+      </div>
+      <div class="ico-txt" id="sbt2">
+        <span>Create New Folder</span>
+      </div>
     </div>
-    <div class="ico-txt" id="sbt2">
-      <span>Create New Folder</span>
-    </div>
-  </div>
-</button>
+  </button>
 </div>
 
 <!-- Modal for upload-->
@@ -185,8 +126,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -211,12 +152,63 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-primary">Create</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<!-- Modal for Rename-->
+<div class="modal fade" id="rename" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Rename Folder</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">New Folder Name</label>
+            <input type="text" class="form-control" id="new_folder_name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="rename()">Rename</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Add to Trash modal -->
+<div class="modal fade" id="trash" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add to Trash</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to add <span id="folder_name_trash"></span> to trash ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="addToTrash()">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <!-- Logout modal -->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -232,8 +224,9 @@
           <p>Are you sure you want to logout ?</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          
         </div>
       </div>
     </div>

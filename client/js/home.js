@@ -20,12 +20,12 @@ function getRootFolders(){
 
         for (let i = 0; i < res.length; i++){
             folder_str += `
-            <div class="column col-lg-3" style="cursor: pointer;" onclick="openFolder(${res[i]["id"]})">
-                <div class="card">
-                <i class="fa fa-folder fa-5x"></i>
-                <div class="container">
-                    <h5><b>${res[i]["name"]}</b></h5>
-                </div>
+            <div class="column col-lg-3">
+                <div class="card" style="cursor: pointer;" onclick="openFolder(${res[i]["id"]})">
+                    <i class="fa fa-folder fa-5x"></i>
+                    <div class="container">
+                        <h5><b>${res[i]["name"]}</b></h5>
+                    </div>
                 </div>
             </div>
             `
