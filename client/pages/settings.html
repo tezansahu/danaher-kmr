@@ -15,7 +15,7 @@
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="../css/simple-sidebar.css" rel="stylesheet">
-  <link href="../theme.css" rel="stylesheet">
+  <link href="../css/theme.css" rel="stylesheet">
 
 </head>
 
@@ -34,6 +34,14 @@
         <a href="myAccount.html" class="list-group-item list-group-item-action"><i class="fa fa-user sidebar-icon" aria-hidden="true"></i>My Account</a>
         <a href="settings.html" class="list-group-item list-group-item-action"><i class="fa fa-gear sidebar-icon" aria-hidden="true"></i>Settings</a>
       </div>
+      <div>
+        <label class="switch">
+          <input type="checkbox" onchange="toggleTheme()" />
+          <span class="slider round"></span>
+        </label>
+        <em>Dark Mode</em>
+      </div>
+      
     </div>
     <!-- /#sidebar-wrapper -->
 
@@ -103,8 +111,8 @@
               <p>Are you sure you want to logout ?</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Logout</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary">Logout</button>
             </div>
           </div>
         </div>
