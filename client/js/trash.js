@@ -95,7 +95,12 @@ function getUserTrashFolders() {
                     }
                     contents_str += `
                     <div class="column col-lg-3" style="cursor: pointer;">
-                        <div class="card">
+                        <div class="card" style="position: relative;">
+                        <div class="dropdown fa fa-ellipsis-v" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="position: absolute; top: 8px; right: 8px;" onclick='setCurrId(${res[i]["id"]})'></div>
+                        <div class="dropdown-menu dropdown-primary">
+                            <a class="dropdown-item" href="#" onclick="restore(${res[i]["id"]})"><i class="fa fa-undo"></i>&nbsp;&nbsp;Restore</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete Permanently</a>
+                        </div>
                         <i class="fa ${icon} fa-5x"></i>
                         <div class="container">
                             <h5><b>${res[i]["name"]}</b></h5>

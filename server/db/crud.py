@@ -60,7 +60,7 @@ def get_folder_by_id(db: Session, id: str):
             parent=folder.parent,
             is_folder=folder.is_folder,
             abs_path=folder.abs_path,
-            contents=db.query(models.File).filter(models.File.parent == id).all()
+            contents=db.query(models.File).filter(models.File.parent == id, models.File.in_trash == False).all()
         )
         return response
 
@@ -144,6 +144,15 @@ def update_folder_name(db: Session, folder: schemas.FileRename):
     db_folder = db.query(models.File).filter(models.File.id==folder.id).first()
     return db_folder
 
+def update_file_name(db: Session, f: schemas.FileRename):
+    original_file = db.query(models.File).filter(models.File.id==f.id, models.File.is_folder==False, models.File.in_trash==False).first()
+    original_name = original_file.name
+    new_abs_path = original_file.abs_path.replace(f"/{original_name}", f"/{f.new_name}")
+    db.query(models.File).filter(models.File.id==f.id, models.File.is_folder==False, models.File.in_trash==False).update({models.File.name: f.new_name, models.File.abs_path: new_abs_path})
+    db.commit()
+
+    db_file = db.query(models.File).filter(models.File.id==f.id).first()
+    return db_file
 
 def get_trash_for_user(db: Session, user_id: int):
     trash = []
