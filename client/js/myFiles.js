@@ -8,6 +8,16 @@ function doCall(url, callback){
     xmlHttp.send(null);
 }
 
+function doPatch(url, body, callback){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+          callback(xmlHttp.responseText);
+        }    
+    }
+    xmlHttp.open("PATCH", url, true); // true for asynchronous 
+    xmlHttp.send(body);
+}
 
 function getUserFolders() {
     window.localStorage.setItem("parent", null);
@@ -33,7 +43,7 @@ function getUserFolders() {
                 folder_str += `
                 <div class="column col-lg-3">
                     <div class="card" style="position: relative; cursor: pointer;">
-                        <div class="dropdown fa fa-ellipsis-v" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="position: absolute; top: 8px; right: 8px;"></div>
+                        <div class="dropdown fa fa-ellipsis-v" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="position: absolute; top: 8px; right: 8px;" onclick='setCurrFolder(${res[i]["id"]})'></div>
                         <div class="dropdown-menu dropdown-primary">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#rename"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Rename</a>
                             <a class="dropdown-item" href="#"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Add to Trash</a>
@@ -58,4 +68,34 @@ function openFolder(id) {
     console.log(id)
     window.localStorage.setItem("parent", id);
     window.location.replace("./folderContents.html")
+}
+
+function setCurrFolder(id) {
+    console.log(id)
+    window.localStorage.setItem("curr_folder", id);
+}
+
+function rename(){
+    new_name = document.getElementById("new_folder_name").value;
+    if (new_name != "") {
+        id = window.localStorage.getItem("curr_folder");
+        created_by = JSON.parse(window.localStorage.getItem("user"))["id"];
+        body = JSON.stringify({
+            "id": id,
+            "created_by": created_by,
+            "new_name": new_name
+        })
+
+        console.log(body)
+
+        doPatch("http://localhost:8000/folders/rename", body, (res, err) => {
+            if (err) {
+                console.err(err);
+            }
+            else {
+                window.location.reload();
+            }
+        })
+    }
+    
 }
