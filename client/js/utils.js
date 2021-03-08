@@ -53,4 +53,7 @@ function searchFilesFolders() {
             }
         })
     }
+    else {
+        alert("Please enter a file/folder name to search")
+    }
 }
