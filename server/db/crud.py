@@ -126,7 +126,8 @@ def update_folder_name(db: Session, folder: schemas.FileRename):
     original_folder = db.query(models.File).filter(models.File.id==folder.id, models.File.is_folder==True, models.File.in_trash==False).first()
     original_name = original_folder.name
     new_abs_path = original_folder.abs_path.replace(f"/{original_name}", f"/{folder.new_name}")
-    new_abs_path = original_folder.abs_path.replace(f"\\{original_name}", f"\\{folder.new_name}")
+    new_abs_path = new_abs_path.replace(f"\\{original_name}", f"\\{folder.new_name}")
+    print(new_abs_path)
     db.query(models.File).filter(models.File.id==folder.id, models.File.is_folder==True, models.File.in_trash==False).update({models.File.name: folder.new_name, models.File.abs_path: new_abs_path})
     db.commit()
 
@@ -138,7 +139,7 @@ def update_folder_name(db: Session, folder: schemas.FileRename):
         parents_to_check.extend([id for id, in children_folder_ids])
         for f in db.query(models.File).filter(models.File.parent==parent_id).all():
             new_abs_path = f.abs_path.replace(f"/{original_name}/", f"/{folder.new_name}/")
-            new_abs_path = original_folder.abs_path.replace(f"\\{original_name}", f"\\{folder.new_name}")
+            new_abs_path = new_abs_path.replace(f"\\{original_name}", f"\\{folder.new_name}")
             print(f.id, f.name, new_abs_path)
             db.query(models.File).filter(models.File.parent==parent_id).update({models.File.abs_path: new_abs_path})
             db.commit()

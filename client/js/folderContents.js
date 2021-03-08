@@ -45,7 +45,7 @@ function getFoldersContents() {
     url = `http://localhost:8000/folders/folder/${curr_folder_id}`;
     doCall(url, (res) => {
         res = JSON.parse(res)
-        document.getElementById("folder_name").innerHTML = res["name"];
+        document.getElementById("folder_name_head").innerHTML = res["name"];
 
         displayUploadCreate(res["created_by"]);
 
