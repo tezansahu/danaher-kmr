@@ -312,7 +312,7 @@ iframe {
 }
 
 .focus-input100::after {
-  font-family: Material-Design-Iconic-Font;
+  font-family: FontAwesome;
   font-size: 22px;
   color: #fff;
 
@@ -385,7 +385,7 @@ iframe {
 
 .label-checkbox100::before {
   content: "\f26b";
-  font-family: Material-Design-Iconic-Font;
+  font-family: FontAwesome;
   font-size: 13px;
   color: transparent;
 
