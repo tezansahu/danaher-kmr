@@ -5,24 +5,66 @@ Knowledge Management Repository for Danaher [Submission for CorpComp (Techfest 2
 
 Need for a digital repository to store documents, photos, and videos and allow ease of access by keywords / topic.
 
-[Link to Detailed Problem Statement](assets/pdf/SmartUI.pdf)
+[Link to Detailed Problem Statement](./CorpComp-PS.pdf)
 
 ---
 ### Usage:
 
 Clone the Repository:
 
-```console
-> git clone https://github.com/tezansahu/danaher_kmr.git
-> cd danaher_kmr/
+```bash
+$ git clone https://github.com/tezansahu/danaher_kmr.git
+$ cd danaher_kmr/
 ```
 
+There are two directories inside the cloned folder - `server` and `client`.
 
-Install the dependencies:
-```console
-> pip install requirements.txt
+To start the client, fire up a terminal and type the following:
+```bash
+$ cd client 
+
+# Install node_modules
+$ npm install
+
+# Start client
+$ npm start
 ```
+
+This will start the client at `localhost:3000`.
+
+To start the backend server:
+
+- Install `mysql` and start `mysql` server
+- Login to `mysql` shell using `mysql -u <username> -p <password>`       
+- Create a database named `danaher-kmr` using `CREATE DATABASE danaher_kmr;`
+
+Now you have your database ready to use.
+
+Next, do the following:
+```bash
+$ cd server
+
+# Create a virtual environment
+$ python3 -m venv ./venvs/danaher-kmr
+$ source ./venvs/danaher-kmr/bin/activate
+
+# Install the dependencies:
+$ pip install -r requirements.txt
+
+# Start the server now
+$ python main.py
+```
+The server will run on `localhost:8000`
+
+The following flags can be used additionally while starng the server:
+
+- `--init_db`: Initialise dummy valued for users, folders & files into the database 
+- `--reload`: For Hot Reloading (mostly used while development)
+          
+Now you can register yourself on the portal & leverage all the functionalities that it has to offer.
+
 ---
+
 ## Features Implemented
 
 ### User login and register
