@@ -54,9 +54,15 @@ function getFoldersContents() {
         if (res["contents"].length == 0) {
             document.getElementById("folders_contents").style.textAlign = "center";
             document.getElementById("folders_contents").innerHTML = `
-            <div class="mt-4" style="text-align: center">
-                <h6>This folder is empty.</h6>
+            <div class="column col-lg-12 mt-5" > 
+            <div class="card" style="background: transparent; box-shadow: none; border: 0;">
+                <i class="fa fa-frown-o fa-5x"></i>
+                <div class="container">
+                    <h5><b>Oops!!</b></h5>
+                    <h6>This folder is empty. Upload new files or create new folders. </h6>
+                </div>
             </div>
+          </div>
             `
         }
         else{

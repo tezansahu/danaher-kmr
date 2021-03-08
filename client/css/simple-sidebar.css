@@ -11,6 +11,7 @@
   --font-color: #333333;
   --color-card: #f1f1f1;
   --heading-bg: #ffffff;
+  --overlay: rgba(255,255,255,0.8);
 }
 .theme-dark {
   --color-primary: #17ed90;
@@ -20,12 +21,26 @@
   --color-card: #a9a9a9;
   --heading-bg: #ffffff;
   --sidebar-bg: #a9a9a9;
+  --overlay: rgb(37, 19, 59, 0.8);
 }
 html, body {
-  background-color: var(--color-secondary);
+  /* background-color: var(--color-secondary); */
   font-family: RocknRoll One, sans-serif;;
+  /* background-image: url(../assets/img/bg-01.jpg); */
+  background-color: var(--overlay);
 }
 
+body::after {
+  content: "";
+  background: url(../assets/img/bg-01.jpg);
+  opacity: 0.9;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
  :root{
   --purple: #7579ff;
   --pink: #b224ef;
@@ -152,7 +167,7 @@ html, body {
   .sticky-bx {
     position: fixed;
     right: 0px;
-    top: 80%;
+    top: 88%;
     padding: 16px;
     width: 60px;
     direction: rtl;

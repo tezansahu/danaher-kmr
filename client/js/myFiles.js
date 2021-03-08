@@ -33,9 +33,15 @@ function getUserFolders() {
         if (res.length == 0) {
             document.getElementById("my_folders").style.textAlign = "center";
             document.getElementById("my_folders").innerHTML = `
-            <div style="text-align: center;">
-                <h5>You do not have any folders yet.</h5>
+            <div class="column col-lg-12 mt-5" > 
+            <div class="card" style="background: transparent; box-shadow: none; border: 0;">
+                <i class="fa fa-frown-o fa-5x"></i>
+                <div class="container">
+                    <h5><b>Oops!!</b></h5>
+                    <h6>You do not have any folders yet. Get started by creating new folders.</h6>
+                </div>
             </div>
+          </div>
             `
         }
         else{
