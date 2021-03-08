@@ -75,6 +75,7 @@ function handleFiles(files) {
   // }
 
   async function uploadFiles() {
+    document.getElementById("upload_spinner").style.display = "block";
     uploaded_count = 0;
     for (i = 0; i < all_files.length; i++) {
       uploadFile(all_files[i], (res) => {

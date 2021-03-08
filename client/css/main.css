@@ -160,9 +160,9 @@ iframe {
 [ Utility ]*/
 .txt1 {
   font-family: Poppins-Regular;
-  font-size: 13px;
-  /* color: #e5e5e5; */
-  color: var(--font-color);
+  font-size: 16px;
+  color: #e5e5e5;
+  /* color: var(--font-color); */
   line-height: 1.5;
 }
 
@@ -271,7 +271,7 @@ iframe {
 .input100 {
   font-family: Poppins-Regular;
   font-size: 16px;
-  color: #fff;
+  color: var(--color-secondary)
   line-height: 1.2;
 
   display: block;
@@ -311,7 +311,7 @@ iframe {
 }
 
 .focus-input100::after {
-  font-family: Material-Design-Iconic-Font;
+  font-family: FontAwesome;
   font-size: 22px;
   color: #fff;
 
@@ -384,7 +384,7 @@ iframe {
 
 .label-checkbox100::before {
   content: "\f26b";
-  font-family: Material-Design-Iconic-Font;
+  font-family: FontAwesome;
   font-size: 13px;
   color: transparent;
 
@@ -567,5 +567,14 @@ iframe {
   }
 }
 
-
-
+.alert-text{
+    animation:blinkingText 1.2s infinite;
+    
+}
+@keyframes blinkingText{
+    0%{     color: #fff }
+    49%{    color: #fff }
+    60%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color: #fff; }
+}

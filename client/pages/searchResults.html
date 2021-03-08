@@ -55,7 +55,7 @@
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button><h5 class="nav-item nav-link" style="margin: inherit;">Search Results</h5>
+        <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button><h5 class="nav-item nav-link" style="margin: inherit;">SEARCH RESULTS</h5>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -121,7 +121,15 @@
         <!-- <h1 class="mt-4 mb-4" id="folder_name"></h1> -->
         
         <div class="row" id="search_results">
-          
+          <div class="col-12 mt-4">
+            <div class="card" style="background: transparent; box-shadow: none; border: 0;">
+              <div class="d-flex justify-content-center" style="display: blo">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p> -->
@@ -149,6 +157,13 @@
             <input type="text" class="form-control" id="new_folder_name">
           </div>
         </form>
+        <div class="row" id="rename_spinner" style="display: none;">
+          <div class="col-12" style="text-align: center;">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" onclick="rename()">Rename</button>
@@ -198,7 +213,7 @@
 
 <!-- Add to Trash modal -->
 <div class="modal fade" id="trash" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Add to Trash</h5>
@@ -208,6 +223,13 @@
       </div>
       <div class="modal-body">
         <p>Do you want to add <span id="folder_name_trash"></span> to trash ?</p>
+        <div class="row" id="add_to_trash_spinner" style="display: none;">
+          <div class="col-12" style="text-align: center;">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" onclick="addToTrash()">Confirm</button>
