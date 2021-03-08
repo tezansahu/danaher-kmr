@@ -78,7 +78,7 @@ body::after {
 
 .org-icon{
   width: 200px; 
-  height:60px; 
+  height:56px; 
   position: relative;
   padding: 10px;
 }
@@ -206,7 +206,7 @@ body::after {
     border: 2px dashed #ccc;
     border-radius: 20px;
     width: inherit;
-    height: 360px;
+    /* height: 360px; */
     font-family: sans-serif;
     /* margin: 100px auto; */
     padding: 20px;
