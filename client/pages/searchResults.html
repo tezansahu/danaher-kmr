@@ -37,7 +37,7 @@
           <input type="checkbox" id="themetoggle" onchange="toggleTheme()" />
           <span class="slider round"></span>
         </label>
-        <h5>Dark Mode</h5>
+        <p>Dark Mode</p>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -45,8 +45,8 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button><h5 class="nav-item nav-link" style="margin: inherit;">My Folders</h5>
+      <nav class="navbar navbar-expand-lg border-bottom">
+        <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button><h5 class="nav-item nav-link" style="margin: inherit;">Search Results</h5>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -92,7 +92,7 @@
               </div>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="./home.html">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></a>
@@ -109,9 +109,9 @@
 
       <div class="container-fluid">
           <!-- H1 tag value will change based on where the user is (can also be a folder name) -->
-        <!-- <h1 class="mt-4 mb-4">My Folders</h1> -->
+        <!-- <h1 class="mt-4 mb-4" id="folder_name"></h1> -->
         
-        <div class="row" id="my_folders">
+        <div class="row" id="search_results">
           
         </div>
         <!-- <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
@@ -123,82 +123,12 @@
   </div>
   <!-- /#wrapper -->
 
-  
-
-<div class="sticky-bx" id="upload_create">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">
-    <div class="hover-bx">
-      <div class="ico-bx" id="sbx2">
-        <i class="fa fa-2x fa-folder-o" style="color: white;"></i>
-      </div>
-      <div class="ico-txt" id="sbt2">
-        <span>Create New Folder</span>
-      </div>
-    </div>
-  </button>
-</div>
-
-<!-- Modal for upload-->
-<div class="modal fade" id="upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document" >
-    <div class="modal-content" >
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle" style="align-items: center;">Upload Files and Folder</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="height: 400px;">
-        <div id="drop-area">
-          <form class="my-form">
-            <p>Upload multiple files with the file dialog or by dragging and dropping them into the dashed region</p>
-            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-            <label class="button" for="fileElem" >Select Files</label>
-          </form>
-          <div id="gallery"></div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal for create-->
-<div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Create New Folder</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Enter Folder Name</label>
-            <input type="text" class="form-control" id="folder_name">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="createFolder()">Create</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <!-- Modal for Rename-->
 <div class="modal fade" id="rename" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Rename Folder</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Rename File / Folder</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -206,7 +136,7 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">New Folder Name</label>
+            <label for="recipient-name" class="col-form-label">New Name</label>
             <input type="text" class="form-control" id="new_folder_name">
           </div>
         </form>
@@ -214,11 +144,48 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" onclick="rename()">Rename</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        
       </div>
     </div>
   </div>
 </div>
 
+<!-- Modal for file details -->
+<div class="modal fade" id="fileDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">File Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-4 details-icon" style="text-align: center;" id="file_icon">
+            <i class="fa fa-file-o fa-5x"></i>
+          </div>
+          <div class="col-lg-2 details-left">
+            <p><b>Name</b></p>
+            <p><b>Size</b></p>
+            <p><b>Created By</b></p>
+            <p><b>Created On</b></p>
+          </div>
+          <div class="col-lg-6 details-right">
+            <p id="file_name">abcd.pdf</p>
+            <p id="file_size">45.8 kB</p>
+            <p id="file_creator">Me</p>
+            <p id="file_created_on">Today</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="downloadFile()">Download</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Add to Trash modal -->
 <div class="modal fade" id="trash" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -242,7 +209,6 @@
   </div>
 </div>
 
-
   <!-- Logout modal -->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
@@ -259,14 +225,13 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          
         </div>
       </div>
     </div>
   </div>
 
-  <script src="../js/myFiles.js"></script>
-  <script src="../js/createUpload.js"></script>
+  <script src="../js/searchResults.js"></script>
+  <script src="../js/folderContents.js"></script>
   <script src="../js/utils.js"></script>
   <!-- Bootstrap core JavaScript -->
   <script src="../vendor/jquery/jquery.min.js"></script>

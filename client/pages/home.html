@@ -57,25 +57,40 @@
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             
             <li class="nav-item">
-              <!-- <a class="nav-link" href="#">Link</a> -->
-              <div class="d-flex justify-content-center h-100">
-                <div class="searchbar" style="display: block;">
-                  <input class="search_input" type="text" name="" placeholder="Search by name...">
-                  <a href="searchResults.html" class="search_icon" onclick="getSearchResults()"><i class="fa fa-search"></i></a>
-                  <div class="nav-item nav-item-hidden" >
-                    <a class="nav-link dropdown-toggle" id="searchDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="searchDropdown">
-                        <h5 class="dropdown-item">Search by Filter</h5>
-                        <div class="dropdown-divider"></div>
-                        <div class="dropdown-item search-container">
-                          <input type="text" class="search-filter" placeholder="Username">
-                          <input type="text" class="search-filter" placeholder="File Type">
-                          <button type="button" class="btn btn-primary search-button">Search</button>
+
+              <div class="row">    
+                <div class="col-xs-8 col-xs-offset-2">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-btn"> 
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept"><i class="fa fa-filter"></i></span>  <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li>
+                              <div class="input-group pl-2 pr-2 mb-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" name="x" placeholder="User Name" id="search_user_name">
+                              </div>
+                            </li>
+                            <li>
+                              <div class="input-group pl-2 pr-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fa fa-file-o"></i></span>
+                                </div>
+                                <input type="text" class="form-control" name="x" placeholder="File Type" id="search_file_type">
+                              </div>
+                            </li>
+                          </ul>
                         </div>
+                      </div>      
+                      <input type="text" class="form-control" name="x" placeholder="Search term..." id="search_keyword">
+                      <div class="input-group-append">
+                        <button class="btn btn-default mr-2" type="button" onclick="searchFilesFolders()"><i class="fa fa-search"></i></button>
                       </div>
-                    </a>
                   </div>
-                </div>
               </div>
             </li>
             
@@ -202,7 +217,6 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="../js/home.js"></script>
-  <script src="../js/search.js"></script>
   <script src="../js/createUpload.js"></script>
   <script src="../js/utils.js"></script>
   

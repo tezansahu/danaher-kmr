@@ -41,7 +41,7 @@ function doPatch(url, body, callback){
 
 function getFoldersContents() {
     curr_folder_id = window.localStorage.getItem("parent");
-    user = JSON.parse(window.localStorage.getItem("parent"));
+    user = JSON.parse(window.localStorage.getItem("user"));
     url = `http://localhost:8000/folders/folder/${curr_folder_id}`;
     doCall(url, (res) => {
         res = JSON.parse(res)

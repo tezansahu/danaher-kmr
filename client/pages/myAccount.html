@@ -57,12 +57,39 @@
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             
             <li class="nav-item">
-              <!-- <a class="nav-link" href="#">Link</a> -->
-              <div class="d-flex justify-content-center h-100">
-                <div class="searchbar">
-                  <input class="search_input" type="text" name="" placeholder="Search...">
-                  <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
-                </div>
+              <div class="row">    
+                <div class="col-xs-8 col-xs-offset-2">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-btn"> 
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept"><i class="fa fa-filter"></i></span>  <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li>
+                              <div class="input-group pl-2 pr-2 mb-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" name="x" placeholder="User Name" id="search_user_name">
+                              </div>
+                            </li>
+                            <li>
+                              <div class="input-group pl-2 pr-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fa fa-file-o"></i></span>
+                                </div>
+                                <input type="text" class="form-control" name="x" placeholder="File Type" id="search_file_type">
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>      
+                      <input type="text" class="form-control" name="x" placeholder="Search term..." id="search_keyword">
+                      <div class="input-group-append">
+                        <button class="btn btn-default mr-2" type="button" onclick="searchFilesFolders()"><i class="fa fa-search"></i></button>
+                      </div>
+                  </div>
               </div>
             </li>
             <li class="nav-item active">
