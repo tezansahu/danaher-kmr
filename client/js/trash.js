@@ -62,7 +62,7 @@ function getUserTrashFolders() {
         if (res.length == 0) {
             document.getElementById("trash_folders").style.textAlign = "center";
             document.getElementById("trash_folders").innerHTML = `
-            <div style="text-align: center;">
+            <div class="mt-3" style="text-align: center;">
                 <h5>Trash is empty!</h5>
             </div>
             `
@@ -71,7 +71,7 @@ function getUserTrashFolders() {
             for (let i = 0; i < res.length; i++){
                 if(res[i]["is_folder"]){
                     contents_str += `
-                    <div class="column col-lg-3" style="cursor: pointer;")">
+                    <div class="column col-lg-3 mt-3" style="cursor: pointer;")">
                         <div class="card" style="position: relative;">
                         <div class="dropdown fa fa-ellipsis-v" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="position: absolute; top: 8px; right: 8px;" onclick='setCurrId(${res[i]["id"]})'></div>
                         <div class="dropdown-menu dropdown-primary">
@@ -94,7 +94,7 @@ function getUserTrashFolders() {
                         icon = default_file_icon;
                     }
                     contents_str += `
-                    <div class="column col-lg-3" style="cursor: pointer;">
+                    <div class="column col-lg-3 mt-3" style="cursor: pointer;">
                         <div class="card" style="position: relative;">
                         <div class="dropdown fa fa-ellipsis-v" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="position: absolute; top: 8px; right: 8px;" onclick='setCurrId(${res[i]["id"]})'></div>
                         <div class="dropdown-menu dropdown-primary">

@@ -41,7 +41,7 @@ function getUserFolders() {
         else{
             for (let i = 0; i < res.length; i++){
                 folder_str += `
-                <div class="column col-lg-3">
+                <div class="column col-lg-3 mt-3">
                     <div class="card" style="position: relative; cursor: pointer;">
                         <div class="dropdown fa fa-ellipsis-v" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="position: absolute; top: 8px; right: 8px;" onclick='setCurrFolder(${res[i]["id"]})'></div>
                         <div class="dropdown-menu dropdown-primary">

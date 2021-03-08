@@ -52,7 +52,10 @@ function register() {
       res = JSON.parse(res);
       console.log("user", res)
       window.localStorage.setItem("user", JSON.stringify(res))
-      loadUser()
+      user = JSON.parse(window.localStorage.getItem('user'));
+      if(user != null){
+        window.location.replace("./home.html");
+      }
     });
 }
 

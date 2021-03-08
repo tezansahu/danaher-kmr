@@ -31,6 +31,7 @@ html, body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--font-color);
  }
 
  #wrapper {
@@ -52,6 +53,7 @@ html, body {
   font-size: 1.8rem;
   display: flex;
   justify-content: center;
+  color: var(--font-color);
 }
 
 .org-icon{
@@ -69,7 +71,10 @@ html, body {
   padding: 0.875rem 1.25rem;
   font-size: 1.3rem;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 69975131528f4ed84d5efa22d5e9d6ac0e655cc1
 #page-content-wrapper {
   min-width: 100vw;
 }
@@ -141,7 +146,7 @@ html, body {
   .sticky-bx {
     position: fixed;
     right: 0px;
-    top: 75%;
+    top: 80%;
     padding: 16px;
     width: 60px;
     direction: rtl;
@@ -193,6 +198,7 @@ html, body {
   }
   p {
     margin-top: 0;
+    /* color : var(--font-color); */
   }
   .my-form {
     margin-bottom: 10px;
