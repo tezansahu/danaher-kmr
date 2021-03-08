@@ -121,3 +121,8 @@ function handleFiles(files) {
 
     document.getElementById('gallery').appendChild(child)
   }
+
+  function cleanFilesArray() {
+    all_files = [];
+    document.getElementById('gallery').innerHTML = "";
+  }
