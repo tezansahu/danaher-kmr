@@ -8,15 +8,18 @@
   --color-primary: #0060df;
   --color-secondary: rgba(255,255,255,0.9);
   --color-accent: #fd6f53;
-  --font-color: #000000;
+  --font-color: #333333;
   --color-card: #f1f1f1;
+  --heading-bg: #ffffff;
 }
 .theme-dark {
   --color-primary: #17ed90;
   --color-secondary: #25133b;
   --color-accent: #12cdea;
-  --font-color: #ffffff;
+  --font-color: #000000;
   --color-card: #a9a9a9;
+  --heading-bg: #ffffff;
+  --sidebar-bg: #a9a9a9;
 }
 html, body {
   background-color: var(--color-secondary);
@@ -54,17 +57,20 @@ html, body {
   display: flex;
   justify-content: center;
   color: var(--font-color);
+  background-color: var(--heading-bg);
 }
 
 .org-icon{
-  width: 240px; 
+  width: 200px; 
   height:60px; 
   position: relative;
+  padding: 10px;
 }
 #sidebar-wrapper .list-group {
   width: 15rem;
   font-size: 1.2rem;
   justify-content: center;
+  background-color: var(--sidebar-bg);
 }
 
 .sidebar-icon {
@@ -211,13 +217,15 @@ html, body {
   .button {
     display: inline-block;
     padding: 10px;
-    background: var(--color-secondary);
+    background: var(--pink);
+    color: #fff;
     cursor: pointer;
     border-radius: 5px;
     border: 1px solid #ccc;
   }
   .button:hover {
-    background: var(--color-secondary);
+    background: var(--purple);
+    
   }
   #fileElem {
     display: none;
@@ -309,6 +317,11 @@ i {
 
 .list-group{
   border-radius: 0;
+}
+
+.list-group-item {
+  background-color: var(--sidebar-bg);
+  color: var(--font-color);
 }
 
 .nav-item-hidden{
