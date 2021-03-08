@@ -49,13 +49,18 @@ html, body {
 }
 
 #sidebar-wrapper .sidebar-heading {
-  padding: 0.45rem 0.45rem;
+  /* padding: 0.45rem 0.45rem; */
   font-size: 1.8rem;
   display: flex;
   justify-content: center;
   color: var(--font-color);
 }
 
+.org-icon{
+  width: 240px; 
+  height:60px; 
+  position: relative;
+}
 #sidebar-wrapper .list-group {
   width: 15rem;
   font-size: 1.2rem;
@@ -102,11 +107,21 @@ html, body {
 
   .searchbar:hover > .search_input{
   padding: 0 10px;
-  width: 500px;
+  width: 400px;
   caret-color: var(--pink);
   transition: width 0.4s linear;
   }
-
+  .search_dropdown{
+    border: 0;
+    outline: 0;
+    width: 0;
+    line-height: 40px;
+  }
+  .searchbar:hover > .search_dropdown{
+    padding: 0 10px;
+  width: 50px;
+    transition: width 0.4s linear;
+  }
   .searchbar:hover > .search_icon{
   background: rgb(53, 53, 53);
   color: #ffffff;
@@ -272,4 +287,57 @@ i {
 .btn-primary:hover{
   background-color: var(--purple);
   border-color: var(--purple);
+}
+
+.details-left{
+  display: inline; 
+  float: left;
+}
+
+.details-right{
+  display: inline; 
+  text-align: right;
+  float: left;
+}
+
+.details-icon{
+  float: left;
+  justify-content: center; 
+  display: flex;
+  margin-top: 40px; 
+}
+
+.list-group{
+  border-radius: 0;
+}
+
+.nav-item-hidden{
+  display: none;
+}
+
+.searchbar:hover .nav-item-hidden { 
+  display: inline-block;
+  position: relative;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.search-filter {
+  min-width: 20px;
+  padding: 8px;
+  margin: 4px 4px 4px 4px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.search-button {
+  margin-left: 10px;
 }

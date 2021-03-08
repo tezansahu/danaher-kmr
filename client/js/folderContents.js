@@ -45,7 +45,7 @@ function getFoldersContents() {
     url = `http://localhost:8000/folders/folder/${curr_folder_id}`;
     doCall(url, (res) => {
         res = JSON.parse(res)
-        document.getElementById("folder_name").innerHTML = res["name"];
+        document.getElementById("folder_name_head").innerHTML = res["name"];
 
         displayUploadCreate(res["created_by"]);
 
@@ -54,7 +54,7 @@ function getFoldersContents() {
         if (res["contents"].length == 0) {
             document.getElementById("folders_contents").style.textAlign = "center";
             document.getElementById("folders_contents").innerHTML = `
-            <div style="text-align: center">
+            <div class="mt-4" style="text-align: center">
                 <h6>This folder is empty.</h6>
             </div>
             `
@@ -75,7 +75,7 @@ function getFoldersContents() {
 
                 if(res["contents"][i]["is_folder"]){
                     contents_str += `
-                    <div class="column col-lg-3" style="cursor: pointer;">
+                    <div class="column col-lg-3 mt-4" style="cursor: pointer;">
                         <div class="card" style="position: relative;">
                         ${delete_rename_str}
                         <i class="fa ${default_folder_icon} fa-5x" onclick="openFolder(${res["contents"][i]["id"]})"></i>
@@ -94,7 +94,7 @@ function getFoldersContents() {
                         icon = default_file_icon;
                     }
                     contents_str += `
-                    <div class="column col-lg-3" style="cursor: pointer;">
+                    <div class="column col-lg-3 mt-4" style="cursor: pointer;">
                         <div class="card" style="position: relative;">
                         ${delete_rename_str}
                         <i class="fa ${icon} fa-5x" data-toggle="modal" data-target="#fileDetails" onclick="getFileDetails(${res["contents"][i]["id"]})"></i>
@@ -221,7 +221,7 @@ function rename(){
         console.log(body)
         is_folder = window.localStorage.getItem("curr_id_is_folder")
         console.log(is_folder)
-        if (is_folder == true) {
+        if (is_folder == "true") {
             url = "http://localhost:8000/folders/rename"
         }
         else {
