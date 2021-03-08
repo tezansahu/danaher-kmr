@@ -23,6 +23,7 @@
 }
 html, body {
   background-color: var(--color-secondary);
+  font-family: RocknRoll One, sans-serif;;
 }
 
  :root{
@@ -73,6 +74,9 @@ html, body {
   background-color: var(--sidebar-bg);
 }
 
+.list-group-item-action .sidebar-active {
+  background-color: var(--pink);
+}
 .sidebar-icon {
   padding: 0.875rem 1.25rem;
   font-size: 1.3rem;
@@ -354,3 +358,7 @@ i {
 .search-button {
   margin-left: 10px;
 }
+
+/* .sidebar-active {
+  background-color: var(--pink);
+} */
