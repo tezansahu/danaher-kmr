@@ -6,16 +6,9 @@ function doPost(url, body, callback){
       }
       if(xmlHttp.status == 400){
         callback(xmlHttp.status);
-        // if (url == "http://localhost:8000/users/login"){
-        //   alert("Invalid User. Enter correct username");
-        // }
-        // if(url == "http://localhost:8000/users/register"){
-        //   alert("User with same Email ID already exists.");
-        // }
       }
       if(xmlHttp.status == 401){
         callback(xmlHttp.status);
-        // alert("Invalid password. Please try again.");
       }
           
   }
@@ -58,7 +51,7 @@ function login(){
       res = JSON.parse(res);
       console.log("user", res)
       window.localStorage.setItem("user", JSON.stringify(res))
-      // loadUser()
+      loadUser()
       }
     }
     });
