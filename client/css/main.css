@@ -1,4 +1,4 @@
-.theme-light {
+/* .theme-light {
   --color-primary: #0060df;
   --color-secondary: rgba(255,255,255,0.9);
   --color-accent: #fd6f53;
@@ -11,7 +11,7 @@
   --color-accent: #12cdea;
   --font-color: #ffffff;
   --color-card: #a9a9a9;
-}
+} */
 
 
 
@@ -90,7 +90,6 @@ p {
 	font-family: Poppins-Regular;
 	font-size: 14px;
 	line-height: 1.7;
-	/* color: #666666; */
   color: var(--font-color);
 	margin: 0px;
 }
@@ -131,7 +130,7 @@ input:-moz-placeholder { color: #fff;}
 input::-moz-placeholder { color: #fff;}
 input:-ms-input-placeholder { color: #fff;}
 
-textarea::-webkit-input-placeholder { color: #fff;}
+textarea::-webkit-input-placeholder { color: #000;}
 textarea:-moz-placeholder { color: #fff;}
 textarea::-moz-placeholder { color: #fff;}
 textarea:-ms-input-placeholder { color: #fff;}
