@@ -25,7 +25,7 @@
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper" >
+    <div id="sidebar-wrapper" >
       <div class="sidebar-heading"><img src="../assets/img/rect_logo2..jpg" class="org-icon"></div>
       <div class="list-group" >
         <a href="home.html" class="list-group-item list-group-item-action"><i class="fa fa-home sidebar-icon" aria-hidden="true"></i>Home</a>
@@ -33,14 +33,21 @@
         <!-- <a href="favorites.html" class="list-group-item list-group-item-action"><i class="fa fa-star sidebar-icon" aria-hidden="true"></i>Favorites</a> -->
         <a href="trash.html" class="list-group-item list-group-item-action sidebar-active"><i class="fa fa-trash-o sidebar-icon" aria-hidden="true"></i>Trash</a>
         <a href="myAccount.html" class="list-group-item list-group-item-action"><i class="fa fa-user sidebar-icon" aria-hidden="true"></i>My Account</a>
+        <div class="list-group-item list-group-item-action" style="padding-top: 20px; padding-bottom: 20px;">
+          <div class="row">
+            <div class="col-3" style="padding-left: 10px;">
+              <label class="switch">
+                  <input type="checkbox" id ="themetoggle" onchange="toggleTheme()" />
+                  <span class="slider round"></span> 
+              </label> 
+            </div>
+            <div class="col-9">
+              Dark Theme
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mt-4">
-        <label class="switch">
-          <input type="checkbox" id="themetoggle" onchange="toggleTheme()" />
-          <span class="slider round"></span>
-        </label>
-        <h5>Dark Mode</h5>
-      </div>
+
     </div>
     <!-- /#sidebar-wrapper -->
 
@@ -57,15 +64,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             
-            <li class="nav-item">
-              <!-- <a class="nav-link" href="#">Link</a> -->
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
               <div class="d-flex justify-content-center h-100">
                 <div class="searchbar">
                   <input class="search_input" type="text" name="" placeholder="Search...">
                   <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
                 </div>
               </div>
-            </li>
+            </li> -->
             <li class="nav-item active">
               <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
             </li>

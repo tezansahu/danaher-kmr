@@ -16,8 +16,6 @@
   <!-- Custom styles for this template -->
   <link href="../css/simple-sidebar.css" rel="stylesheet">
   <link href="../css/theme.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
-
 
 </head>
 
@@ -29,7 +27,7 @@
     <div id="sidebar-wrapper" >
       <div class="sidebar-heading"><img src="../assets/img/rect_logo2..jpg" class="org-icon"></div>
       <div class="list-group" >
-        <a href="home.html" class="list-group-item list-group-item-action sidebar-active"><i class="fa fa-home sidebar-icon" aria-hidden="true"></i>Home</a>
+        <a href="home.html" class="list-group-item list-group-item-action"><i class="fa fa-home sidebar-icon" aria-hidden="true"></i>Home</a>
         <a href="myFiles.html" class="list-group-item list-group-item-action"><i class="fa fa-folder sidebar-icon" aria-hidden="true"></i>My Folders</a>
         <!-- <a href="favorites.html" class="list-group-item list-group-item-action"><i class="fa fa-star sidebar-icon" aria-hidden="true"></i>Favorites</a> -->
         <a href="trash.html" class="list-group-item list-group-item-action"><i class="fa fa-trash-o sidebar-icon" aria-hidden="true"></i>Trash</a>
@@ -56,7 +54,7 @@
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button><h5 class="nav-item nav-link" style="margin: inherit;">HOME</h5>
+        <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button><h5 class="nav-item nav-link" style="margin: inherit;">Search Results</h5>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -66,7 +64,6 @@
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             
             <li class="nav-item">
-
               <div class="row">    
                 <div class="col-xs-8 col-xs-offset-2">
                   <div class="input-group">
@@ -102,9 +99,8 @@
                   </div>
               </div>
             </li>
-            
             <li class="nav-item active">
-              <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="./home.html">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></a>
@@ -120,40 +116,11 @@
       </nav>
 
       <div class="container-fluid">
-        <!-- <h1 class="mt-4 mb-4" style="margin-bottom: 20px;">Home</h1> -->
-        <div class="row" id="home_folders">
-          <!-- <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2018</b></h4>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2019</b></h4>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2020</b></h4>
-              </div>
-            </div>
-          </div>
-          <div class="column col-lg-2">
-            <div class="card">
-              <i class="fa fa-folder fa-5x"></i>
-              <div class="container">
-                <h4><b>2021</b></h4>
-              </div>
-            </div>
-          </div> -->
+          <!-- H1 tag value will change based on where the user is (can also be a folder name) -->
+        <!-- <h1 class="mt-4 mb-4" id="folder_name"></h1> -->
+        
+        <div class="row" id="search_results">
+          
         </div>
         <!-- <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p> -->
@@ -164,46 +131,12 @@
   </div>
   <!-- /#wrapper -->
 
-  <div class="sticky-bx" id="upload_create">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">
-    <div class="hover-bx">
-      <div class="ico-bx" id="sbx2">
-        <i class="fa fa-2x fa-folder-o" style="color: white;"></i>
-      </div>
-      <div class="ico-txt" id="sbt2">
-        <span>Create New Folder</span>
-      </div>
-    </div>
-  </button>
-  </div>
-
-    <!-- Logout modal -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Log Out</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Are you sure you want to logout ?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal for create-->
-<div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- Modal for Rename-->
+<div class="modal fade" id="rename" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Create New Folder</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Rename File / Folder</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -211,26 +144,107 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Enter Folder Name</label>
-            <input type="text" class="form-control" id="folder_name">
+            <label for="recipient-name" class="col-form-label">New Name</label>
+            <input type="text" class="form-control" id="new_folder_name">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="createFolder()">Create</button>
+        <button type="button" class="btn btn-primary" onclick="rename()">Rename</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        
       </div>
     </div>
   </div>
 </div>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="../js/home.js"></script>
-  <script src="../js/createUpload.js"></script>
+<!-- Modal for file details -->
+<div class="modal fade" id="fileDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">File Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-4 details-icon" style="text-align: center;" id="file_icon">
+            <i class="fa fa-file-o fa-5x"></i>
+          </div>
+          <div class="col-lg-2 details-left">
+            <p><b>Name</b></p>
+            <p><b>Size</b></p>
+            <p><b>Created By</b></p>
+            <p><b>Created On</b></p>
+          </div>
+          <div class="col-lg-6 details-right">
+            <p id="file_name">abcd.pdf</p>
+            <p id="file_size">45.8 kB</p>
+            <p id="file_creator">Me</p>
+            <p id="file_created_on">Today</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="downloadFile()">Download</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add to Trash modal -->
+<div class="modal fade" id="trash" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add to Trash</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to add <span id="folder_name_trash"></span> to trash ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="addToTrash()">Confirm</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Logout modal -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Log Out</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to logout ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/searchResults.js"></script>
+  <script src="../js/folderContents.js"></script>
   <script src="../js/utils.js"></script>
-  
+  <!-- Bootstrap core JavaScript -->
   <script src="../vendor/jquery/jquery.min.js"></script>
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/dragndrop.js"></script>
   <script src="../js/theme.js"></script>
   <!-- Menu Toggle Script -->
   <script>

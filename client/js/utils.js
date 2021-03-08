@@ -21,3 +21,23 @@ function showNameInHeader() {
 }
 
 showNameInHeader()
+
+function searchFilesFolders() {
+    keyword = document.getElementById("search_keyword").value;
+    if (keyword != "") {
+        username = document.getElementById("search_user_name").value;
+        file_type = document.getElementById("search_file_type").value;
+
+        doCall(`http://localhost:8000/search?keyword=${keyword}&username=${username}&file_type=${file_type}`, (res, err) => {
+            if (err) {
+                console.err(err);
+            }
+            else {
+                res = JSON.parse(res);
+                console.log(res)
+                window.localStorage.setItem("search_results", JSON.stringify(res));
+                window.location.replace("./searchResults.html");
+            }
+        })
+    }
+}

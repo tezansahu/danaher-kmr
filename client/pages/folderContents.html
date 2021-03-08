@@ -25,28 +25,36 @@
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper" >
+    <div id="sidebar-wrapper" >
       <div class="sidebar-heading"><img src="../assets/img/rect_logo2..jpg" class="org-icon"></div>
       <div class="list-group" >
         <a href="home.html" class="list-group-item list-group-item-action"><i class="fa fa-home sidebar-icon" aria-hidden="true"></i>Home</a>
         <a href="myFiles.html" class="list-group-item list-group-item-action"><i class="fa fa-folder sidebar-icon" aria-hidden="true"></i>My Folders</a>
         <!-- <a href="favorites.html" class="list-group-item list-group-item-action"><i class="fa fa-star sidebar-icon" aria-hidden="true"></i>Favorites</a> -->
         <a href="trash.html" class="list-group-item list-group-item-action"><i class="fa fa-trash-o sidebar-icon" aria-hidden="true"></i>Trash</a>
-        <a href="myAccount.html" class="list-group-item list-group-item-action"><i class="fa fa-user sidebar-icon" aria-hidden="true"></i>My Account</a>      </div>
-      <div class="mt-4">
-        <label class="switch">
-          <input type="checkbox" id="themetoggle" onchange="toggleTheme()" />
-          <span class="slider round"></span>
-        </label>
-        <p>Dark Mode</p>
+        <a href="myAccount.html" class="list-group-item list-group-item-action"><i class="fa fa-user sidebar-icon" aria-hidden="true"></i>My Account</a>
+        <div class="list-group-item list-group-item-action" style="padding-top: 20px; padding-bottom: 20px;">
+          <div class="row">
+            <div class="col-3" style="padding-left: 10px;">
+              <label class="switch">
+                  <input type="checkbox" id ="themetoggle" onchange="toggleTheme()" />
+                  <span class="slider round"></span> 
+              </label> 
+            </div>
+            <div class="col-9">
+              Dark Theme
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-      <nav class="navbar navbar-expand-lg border-bottom">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button><h5 class="nav-item nav-link" style="margin: inherit;" id="folder_name_head"></h5>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,12 +65,39 @@
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             
             <li class="nav-item">
-              <!-- <a class="nav-link" href="#">Link</a> -->
-              <div class="d-flex justify-content-center h-100">
-                <div class="searchbar">
-                  <input class="search_input" type="text" name="" placeholder="Search...">
-                  <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
-                </div>
+              <div class="row">    
+                <div class="col-xs-8 col-xs-offset-2">
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-btn"> 
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span id="search_concept"><i class="fa fa-filter"></i></span>  <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li>
+                              <div class="input-group pl-2 pr-2 mb-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                <input type="text" class="form-control" name="x" placeholder="User Name" id="search_user_name">
+                              </div>
+                            </li>
+                            <li>
+                              <div class="input-group pl-2 pr-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fa fa-file-o"></i></span>
+                                </div>
+                                <input type="text" class="form-control" name="x" placeholder="File Type" id="search_file_type">
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>      
+                      <input type="text" class="form-control" name="x" placeholder="Search term..." id="search_keyword">
+                      <div class="input-group-append">
+                        <button class="btn btn-default mr-2" type="button" onclick="searchFilesFolders()"><i class="fa fa-search"></i></button>
+                      </div>
+                  </div>
               </div>
             </li>
             <li class="nav-item active">
