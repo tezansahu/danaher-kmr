@@ -16,6 +16,7 @@ icons = {
 default_file_icon = "fa-file-o";
 
 let all_files = []
+let uploaded_count = 0;
 
 let dropArea = document.getElementById('drop-area');
 
@@ -73,44 +74,38 @@ function handleFiles(files) {
   //   .catch(() => { /* Error. Inform the user */ })
   // }
 
-
-
   async function uploadFiles() {
+    uploaded_count = 0;
+    for (i = 0; i < all_files.length; i++) {
+      uploadFile(all_files[i], (res) => {
+        console.log(res);
+        if (uploaded_count == all_files.length) {
+          window.location.reload();
+        }
+      })
+    }
+  }
+
+  function uploadFile(file, callback) {
     var url = "http://localhost:8000/files/upload"
     var xhr = new XMLHttpRequest()
 
-    // var formData = new FormData()
-    // formData.append("created_by", JSON.parse(window.localStorage.getItem("user"))["id"]);
-    // formData.append("parent", window.localStorage.getItem("parent"));
-    // formData.append("files", all_files)
-    body = JSON.stringify({
-      "created_by": JSON.parse(window.localStorage.getItem("user"))["id"],
-      "parent": window.localStorage.getItem("parent"),
-      "files": all_files
-    })
-
-  
+    var formData = new FormData()
+    formData.append("created_by", JSON.parse(window.localStorage.getItem("user"))["id"]);
+    formData.append("parent", window.localStorage.getItem("parent"));
+    formData.append("f", file)
     xhr.addEventListener('readystatechange', function(e) {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        // Done. Inform the user
-        console.log("Yay! Files uploaded!")
+        console.log("Yay! Files uploaded!");
+        uploaded_count += 1;
+        callback(xhr.responseText);
       }
     })
     xhr.open('POST', url, true)
-    xhr.setRequestHeader("content-type", "multipart/form-data")
-    xhr.send(body)
-
-    // await fetch('http://localhost:8000/files/upload', {
-    //   method: 'POST',
-    //   // headers: {
-    //   //   'Content-Type': 'multipart/form-data'
-    //   // },
-    //   body: formData
-    // })
+    xhr.send(formData)
   }
 
   function previewFile(file) {
-    
     gallery = document.getElementById("gallery")
     extension = file.name.split('.').pop()
     if (icons[extension] != null){
@@ -122,8 +117,6 @@ function handleFiles(files) {
 
     let child = document.createElement("div")
     child.className = "col-12"
-    // child.style.
-    // child.style.paddingLeft = "20%"
     child.innerHTML = `<p style="margin-bottom: 0"><i class="fa ${icon} sidebar-icon" aria-hidden="true"></i>${file.name}</p>`
 
     document.getElementById('gallery').appendChild(child)

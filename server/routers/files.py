@@ -43,8 +43,8 @@ async def download_file(id: int, db: Session = Depends(utils.get_db)):
         raise HTTPException(status_code=404, detail="File not found")
     return db_file
 
-@router.post("/upload", response_model=List[schemas.FileInfo])
-async def upload_file(created_by: int = Form(...), parent: int = Form(...), files: List[UploadFile] = File(...), db: Session = Depends(utils.get_db)):
+@router.post("/upload", response_model=schemas.FileInfo)
+async def upload_file(created_by: int = Form(...), parent: int = Form(...), f: UploadFile = File(...), db: Session = Depends(utils.get_db)):
     db_folder = crud.get_folder_by_id(db, parent)
     
     # Check if the parent folder exists
@@ -55,35 +55,36 @@ async def upload_file(created_by: int = Form(...), parent: int = Form(...), file
     if db_folder.created_by != created_by:
         raise HTTPException(status_code=401, detail="Unauthorized to upload files to this folder")
     
-    response_files = []
-    for f in files:
-        # Check if file with same name exists in the parent folder. If yes, then append a string to rename the newly uploaded file
-        existing_file = crud.get_file_by_name_in_parent(db, f.filename, parent)
-        if existing_file:
-            f.filename = "new_" + f.filename
+    # response_files = []
+    # for f in files:
+    # Check if file with same name exists in the parent folder. If yes, then append a string to rename the newly uploaded file
+    existing_file = crud.get_file_by_name_in_parent(db, f.filename, parent)
+    if existing_file:
+        f.filename = "new_" + f.filename
 
-        # Save the file to disk
-        abs_path = os.path.join(db_folder.abs_path, f.filename)
-        with open(abs_path, "wb") as buffer:
-            shutil.copyfileobj(f.file, buffer)
+    # Save the file to disk
+    abs_path = os.path.join(db_folder.abs_path, f.filename)
+    with open(abs_path, "wb") as buffer:
+        shutil.copyfileobj(f.file, buffer)
 
-        # Create an entry in the database as well
-        new_file = schemas.FileCreate(
-            name=f.filename,
-            abs_path=abs_path,
-            is_folder=False,
-            parent=parent,
-            created_by=created_by,
-            created_on=date.today(),
-            size=os.path.getsize(abs_path),
-            file_type=os.path.splitext(abs_path)[1][1:]
-        )
-        response_files.append(crud.create_file(db=db, f=new_file))
+    # Create an entry in the database as well
+    new_file = schemas.FileCreate(
+        name=f.filename,
+        abs_path=abs_path,
+        is_folder=False,
+        parent=parent,
+        created_by=created_by,
+        created_on=date.today(),
+        size=os.path.getsize(abs_path),
+        file_type=os.path.splitext(abs_path)[1][1:]
+    )
+    # response_files.append()
     
-    return response_files
+    return crud.create_file(db=db, f=new_file)
+
 
 @router.patch("/rename", response_model=schemas.FileInfo)
-def rename_file(file: schemas.FileRename, db: Session = Depends(utils.get_db)):
+async def rename_file(file: schemas.FileRename, db: Session = Depends(utils.get_db)):
     db_file = crud.get_file_by_id(db, id=file.id)
     # Check if the file exists
     if not db_file or db_file.is_folder:

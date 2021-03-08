@@ -21,8 +21,8 @@ def init_db(db, args):
     Base.metadata.drop_all(bind=engine, tables=[models.File.__table__, models.User.__table__])
     models.Base.metadata.create_all(bind=engine)
 
-    if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), "kmr_storage")):
-        shutil.rmtree(os.path.join(os.path.dirname(os.path.abspath(__file__)), "kmr_storage"))
+    if os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "kmr_storage")):
+        shutil.rmtree(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "kmr_storage"))
     user = None
 
     print("Populating dummy users...")
@@ -44,7 +44,7 @@ def init_db(db, args):
 
     # Populate `files` table with 1 root folder & 1 event folder created by `user`
     print("Creating dummy standard parent folder...")
-    abs_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kmr_storage", "2021-February")
+    abs_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "kmr_storage", "2021-February")
     if not os.path.exists(abs_path):
         os.makedirs(abs_path)
 
