@@ -20,7 +20,20 @@ function showNameInHeader() {
     document.getElementById("navbarDropdown").innerHTML = user["name"]
 }
 
-showNameInHeader()
+
+function checkLoggedIn() {
+    user = JSON.parse(window.localStorage.getItem("user"));
+    if (! user) {
+        window.location.replace("../index.html")
+    }
+}
+
+function onPageLoad() {
+    checkLoggedIn();
+    showNameInHeader();
+}
+
+onPageLoad()
 
 function searchFilesFolders() {
     keyword = document.getElementById("search_keyword").value;
