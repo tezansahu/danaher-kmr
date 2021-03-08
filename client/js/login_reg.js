@@ -28,9 +28,14 @@ function login(){
     document.getElementById("loginInvalid").style.display = 'none';
     let email = document.getElementById("email").value;
     let passwd = document.getElementById("pass").value;
+
+    var hashObj = new jsSHA("SHA-256", "TEXT", {numRounds: 1});
+    hashObj.update(passwd);
+    var hash = hashObj.getHash("HEX");
+
     ans = JSON.stringify({
         "email_id": email,
-        "passwd_hashed": passwd
+        "passwd_hashed": hash
       })      
     console.log(ans)
 
@@ -67,8 +72,14 @@ function register() {
     let opco = document.getElementById("opco").value;
     let contact = document.getElementById("contact").value;
     let pswd = document.getElementById("passwd").value;
-    let data = JSON.stringify({"email_id": email,
-      "passwd_hashed": pswd,
+
+    var hashObj = new jsSHA("SHA-256", "TEXT", {numRounds: 1});
+    hashObj.update(pswd);
+    var hash = hashObj.getHash("HEX");
+
+    let data = JSON.stringify({
+      "email_id": email,
+      "passwd_hashed": hash,
       "name": name,
       "op_co": opco,
       "contact_no": contact

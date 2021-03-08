@@ -75,6 +75,7 @@ function handleFiles(files) {
   // }
 
   async function uploadFiles() {
+    document.getElementById("upload_spinner").style.display = "block";
     uploaded_count = 0;
     for (i = 0; i < all_files.length; i++) {
       uploadFile(all_files[i], (res) => {
@@ -120,4 +121,9 @@ function handleFiles(files) {
     child.innerHTML = `<p style="margin-bottom: 0"><i class="fa ${icon} sidebar-icon" aria-hidden="true"></i>${file.name}</p>`
 
     document.getElementById('gallery').appendChild(child)
+  }
+
+  function cleanFilesArray() {
+    all_files = [];
+    document.getElementById('gallery').innerHTML = "";
   }

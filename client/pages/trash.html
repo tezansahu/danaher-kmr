@@ -94,16 +94,16 @@
         <div class="card mt-3" style="background-color: gainsboro; box-shadow: none;">
           <i class="fa fa-trash-o fa-2x"></i> Items in the trash will be automatically deleted after 10 days.
         </div>
-        <div class="row" id="trash_folders" style="align-items: center;">
-          <!-- <div class="column col-lg-12 mt-5" > 
+        <div class="row" id="trash_folders">
+          <div class="col-12 mt-4">
             <div class="card" style="background: transparent; box-shadow: none; border: 0;">
-                <i class="fa fa-smile-o fa-5x"></i>
-                <div class="container">
-                    <h5><b>Great!!</b></h5>
-                    <h6>The trash is empty. Move files or folders you don't need anymore to the <b>Trash</b></h6>
+              <div class="d-flex justify-content-center" style="display: blo">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
                 </div>
+              </div>
             </div>
-          </div> -->
+          </div>
         </div>
         <!-- <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p> -->
@@ -139,7 +139,7 @@
 
     <!-- Logout modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">Log Out</h5>
@@ -148,7 +148,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>Are you sure you want to logout ?</p>
+              <p>Are you sure you want to logout?</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>

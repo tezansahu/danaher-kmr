@@ -122,7 +122,15 @@
       <div class="container-fluid">
         <!-- <h1 class="mt-4 mb-4" style="margin-bottom: 20px;">Home</h1> -->
         <div class="row" id="home_folders">
-          
+          <div class="col-12 mt-4">
+            <div class="card" style="background: transparent; box-shadow: none; border: 0;">
+              <div class="d-flex justify-content-center" style="display: blo">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p> -->
@@ -148,7 +156,7 @@
 
     <!-- Logout modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+      <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Log Out</h5>
@@ -157,7 +165,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Are you sure you want to logout ?</p>
+            <p>Are you sure you want to logout?</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
@@ -184,6 +192,14 @@
             <input type="text" class="form-control" id="folder_name">
           </div>
         </form>
+        <div class="row" id="create_folder_spinner" style="display: none;">
+          <div class="col-12" style="text-align: center;">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" onclick="createFolder()">Create</button>

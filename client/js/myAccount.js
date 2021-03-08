@@ -40,11 +40,20 @@ function updatePassword() {
 
     console.log(old_passwd, new_passwd)
     if (old_passwd != "" && new_passwd != "") {
-        console.log("a")
+        
+        var hashObj = new jsSHA("SHA-256", "TEXT", {numRounds: 1});
+        hashObj.update(old_passwd);
+        var old_passwd_hash = hashObj.getHash("HEX");
+
+        var hashObj = new jsSHA("SHA-256", "TEXT", {numRounds: 1});
+        hashObj.update(new_passwd);
+        var new_passwd_hash = hashObj.getHash("HEX");
+
+
         body = JSON.stringify({
             "email_id": document.getElementById("email").value,
-            "old_passwd_hashed": old_passwd,
-            "new_passwd_hashed": new_passwd
+            "old_passwd_hashed": old_passwd_hash,
+            "new_passwd_hashed": new_passwd_hash
         })
 
         doPatch("http://localhost:8000/users/update/passwd", body, (res, err) => {

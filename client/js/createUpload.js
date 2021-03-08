@@ -10,6 +10,7 @@ function doPost(url, body, callback){
   }
 
 function createFolder() {
+    document.getElementById("create_folder_spinner").style.display = "block";
     user = JSON.parse(window.localStorage.getItem("user"));
     parent = window.localStorage.getItem("parent");
 
