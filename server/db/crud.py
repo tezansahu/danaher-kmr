@@ -248,7 +248,8 @@ def search_drive(db: Session, keyword: str, username: str = "", file_type: str =
         filtered = db.query(models.File, models.User).filter(
             models.File.created_by == models.User.id, 
             models.File.name.like("%{}%".format(keyword)),
-            models.User.name.like("%{}%".format(username))
+            models.User.name.like("%{}%".format(username)),
+            models.File.is_folder == True
         ).all()
         for f, _ in filtered:
             response.append(f)
