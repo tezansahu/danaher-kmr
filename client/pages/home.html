@@ -53,21 +53,18 @@
               <!-- <a class="nav-link" href="#">Link</a> -->
               <div class="d-flex justify-content-center h-100">
                 <div class="searchbar" style="display: block;">
-                  <input class="search_input" type="text" name="" placeholder="Search...">
-                  <!-- <P  class="search_dropdown">JNEDJNE</P> -->
-                  <!-- <a class="search_imput nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></a> -->
-              <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="myAccount.html">My Account</a>
-                <a class="dropdown-item" href="settings.html">Settings</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="../index.html" data-toggle="modal" data-target="#logoutModal">Logout</a>
-              </div> -->
+                  <input class="search_input" type="text" name="" placeholder="Search by name...">
                   <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
                   <div class="nav-item nav-item-hidden" >
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                      <div class="dropdown-menu" aria-labelledby="">
-                        <p>Advanced Search</p>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="">
+                        <h5 class="dropdown-item">Search by Filter</h5>
                         <div class="dropdown-divider"></div>
+                        <div class="dropdown-item search-container">
+                          <input type="text" class="search-filter" placeholder="Username">
+                          <input type="text" class="search-filter" placeholder="File Type">
+                          <button type="button" class="btn btn-primary search-button">Search</button>
+                        </div>
                       </div>
                     </a>
                   </div>

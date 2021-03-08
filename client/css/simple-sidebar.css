@@ -106,7 +106,7 @@ html, body {
 
   .searchbar:hover > .search_input{
   padding: 0 10px;
-  width: 500px;
+  width: 400px;
   caret-color: var(--pink);
   transition: width 0.4s linear;
   }
@@ -313,6 +313,29 @@ i {
   display: none;
 }
 
-.searchbar:hover .nav-item-hidden {
+.searchbar:hover .nav-item-hidden { 
   display: inline-block;
+  position: relative;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+}
+
+.search-filter {
+  min-width: 20px;
+  padding: 8px;
+  margin: 4px 4px 4px 4px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.search-button {
+  margin-left: 10px;
 }
