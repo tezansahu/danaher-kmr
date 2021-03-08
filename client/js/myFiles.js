@@ -80,6 +80,7 @@ function setCurrFolder(id) {
 }
 
 function rename(){
+    document.getElementById("rename_spinner").style.display = "block";
     new_name = document.getElementById("new_folder_name").value;
     if (new_name != "") {
         id = window.localStorage.getItem("curr_folder");
@@ -104,6 +105,7 @@ function rename(){
 }
 
 function addToTrash() {
+    document.getElementById("add_to_trash_spinner").style.display = "block";
     body = JSON.stringify({
         "id": window.localStorage.getItem("curr_folder"),
         "created_by": JSON.parse(window.localStorage.getItem("user"))["id"]
