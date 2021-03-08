@@ -34,10 +34,10 @@ function getUserFolders() {
             document.getElementById("my_folders").style.textAlign = "center";
             document.getElementById("my_folders").innerHTML = `
             <div class="column col-lg-12 mt-5" > 
-            <div class="card" style="background: transparent; box-shadow: none; border: 0;">
+            <div class="card empty-msg">
                 <i class="fa fa-frown-o fa-5x"></i>
                 <div class="container">
-                    <h5><b>Oops!!</b></h5>
+                    <h4><b>Oops!!</b></h4>
                     <h6>You do not have any folders yet. Get started by creating new folders.</h6>
                 </div>
             </div>

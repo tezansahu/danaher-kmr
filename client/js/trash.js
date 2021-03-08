@@ -63,10 +63,10 @@ function getUserTrashFolders() {
             document.getElementById("trash_folders").style.textAlign = "center";
             document.getElementById("trash_folders").innerHTML = `
             <div class="column col-lg-12 mt-5" > 
-            <div class="card" style="background: transparent; box-shadow: none; border: 0;">
+            <div class="card empty-msg">
                 <i class="fa fa-smile-o fa-5x"></i>
                 <div class="container">
-                    <h5><b>Great!!</b></h5>
+                    <h4><b>Great!!</b></h4>
                     <h6>The trash is empty. Move files or folders you don't need anymore to the <b>Trash</b></h6>
                 </div>
             </div>

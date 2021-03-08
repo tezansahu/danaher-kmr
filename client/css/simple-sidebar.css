@@ -14,6 +14,7 @@
   --overlay: rgba(255,255,255,0.8);
   --purple: #7579ff;
   --pink: #b224ef;
+  --empty:  #333333;
 }
 .theme-dark {
   --color-primary: #17ed90;
@@ -26,6 +27,7 @@
   --overlay: rgb(37, 19, 59, 0.8);
   --purple: #494c99;
   --pink: #5b137a;
+  --empty: #fff;
 }
 
 html, body {
@@ -390,3 +392,10 @@ i {
 /* .sidebar-active {
   background-color: var(--pink);
 } */
+
+.empty-msg{
+  background: transparent; 
+  box-shadow: none; 
+  border: 0;
+  color: var(--empty);
+}

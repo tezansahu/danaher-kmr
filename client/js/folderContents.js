@@ -55,10 +55,10 @@ function getFoldersContents() {
             document.getElementById("folders_contents").style.textAlign = "center";
             document.getElementById("folders_contents").innerHTML = `
             <div class="column col-lg-12 mt-5" > 
-            <div class="card" style="background: transparent; box-shadow: none; border: 0;">
+            <div class="card empty-msg">
                 <i class="fa fa-frown-o fa-5x"></i>
                 <div class="container">
-                    <h5><b>Oops!!</b></h5>
+                    <h4><b>Oops!!</b></h4>
                     <h6>This folder is empty. Upload new files or create new folders. </h6>
                 </div>
             </div>
