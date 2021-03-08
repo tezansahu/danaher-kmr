@@ -240,13 +240,14 @@ def delete_folder_from_trash(db: Session, id: int):
 
     return {"id": id, "status": "deleted forever"}
 
-def search_drive(db: Session, keyword: str, username: str = None, file_type: str = None):
+def search_drive(db: Session, keyword: str, username: str = "", file_type: str = ""):
     response = []
-    filtered = db.query(models.File, models.User).filter(models.File.parent == models.User.id, models.File.name.like("%{}%".format(keyword))).all()
-    if username:
-        filtered = fitered.filter(models.User.name.like("%{}%".format(username))).all()
-    if file_type:
-        filtered = filtered.filter(models.File.file_type.like("%{}%".format(file_type))).all()
+    filtered = db.query(models.File, models.User).filter(
+        models.File.created_by == models.User.id, 
+        models.File.name.like("%{}%".format(keyword)),
+        models.User.name.like("%{}%".format(username)),
+        models.File.file_type.like("%{}%".format(file_type))
+    ).all()
     
     for f, _ in filtered:
         response.append(f)
