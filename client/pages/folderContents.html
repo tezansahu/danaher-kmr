@@ -46,7 +46,7 @@
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg border-bottom">
-        <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button><h5 class="nav-item nav-link" style="margin: inherit;" id="folder_name"></h5>
+        <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></button><h5 class="nav-item nav-link" style="margin: inherit;" id="folder_name_head"></h5>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -168,12 +168,12 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Enter Folder Name</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" class="form-control" id="folder_name">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Create</button>
+        <button type="button" class="btn btn-primary" onclick="createFolder()">Create</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
       </div>
     </div>
