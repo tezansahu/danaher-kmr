@@ -25,30 +25,46 @@ Install the dependencies:
 ---
 ## Features Implemented - 
 
-### User login and profile update:
+### User login and register
+The landing page is the login page. A new user needs to first register by filling in some details. Login errors like  invalid username or password, and registration errors like already-existent user are appropriately displayed. Passwords are hashed using the SHA256 algorithm before sending to the server.
 
+![Demo](demo/.gif)
 
-### Folder creation 
+### User profile and password update
+A user can change profile details and reset password via 'My Accounts' page. 
 
+![Demo](demo/.gif)
+
+### Folder create 
+Folder can be created via the 'Create New Folder' button in the bottom right corner. Folders created on the Home page (no parent folder) will be directly added to the root folder of the specific month and year (Example - '2021-March' as shown in following GIF). The user can view all folders but can only edit the folders created by him. 
+
+![Demo](demo/.gif)
 
 ### File upload/download 
-Multiple files can be uploaded (only in the folder created by the user) using the upload button in the bottom right corner, either by dropping them in the dialog box or by clicking on `Select Files` button. 
+Multiple files can be uploaded (only in the folder created by the user) using the 'Upload Files' button in the bottom right corner, either by dropping them in the dialog box or by clicking on 'Select Files' button. 
 
-By clicking on the thumbnail of any file, the user can get the details such as file size and creator. File can be downloaded via the `Download` button in the dialog box.  
+By clicking on the thumbnail of any file, the user can get the details such as file size and creator. The file can be downloaded via the 'Download' button in the dialog box.  
 
-![Demo](assets/demo/.gif)
-
-### File delete/restore 
-
+![Demo](demo/.gif)
 
 ### Search 
 Files and folders can be searched throughout the database using a keyword for name. Advanced search option is also available to refine the results by filters like username and file type.
 
-![Demo](assets/demo/.gif)
+![Demo](demo/.gif)
+
+### File and folder delete/restore 
+Any file or folder created by the user can be moved to 'Trash', where it stays for 10 days before being automatically deleted from the database. The user has an option to restore the file/folder within these 10 days to the original location or permanently delete them manually.
+
+![Demo](demo/.gif)
+
+### File and Folder rename
+The files and folders created by user can be renamed using the 'Rename' option from the dropdown as shown in the following GIF.
+
+![Demo](demo/.gif)
 
 ### Dark theme
 
-![Demo](assets/demo/.gif)
+![Demo](demo/.gif)
 
 ---
 
