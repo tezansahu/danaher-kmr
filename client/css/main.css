@@ -271,7 +271,7 @@ iframe {
 .input100 {
   font-family: Poppins-Regular;
   font-size: 16px;
-  color: #fff;
+  color: var(--color-secondary)
   line-height: 1.2;
 
   display: block;
