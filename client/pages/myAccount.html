@@ -17,6 +17,8 @@
   <link href="../css/simple-sidebar.css" rel="stylesheet">
   <link href="../css/theme.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
+  <link href="../css/main.css" rel="stylesheet">
+
 
 </head>
 
@@ -125,7 +127,7 @@
                 <div class="col-md-8">
                   <div class="card mt-4">
                     <div class="card-header card-header-primary" style="background-color: #b224ef; z-index: 2; margin-top: -40px;">
-                      <h4 class="card-title">Edit Profile</h4>
+                      <h4 class="card-title" style="color: #ffff;">Edit Profile</h4>
                       <!-- <p class="card-category"></p> -->
                     </div>
                     <div class="card-body mt-4">
@@ -133,32 +135,34 @@
                         <div class="row">
                           
                           <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="wrap-input100 validate-input">
                               <label class="bmd-label-floating">Name</label>
-                              <input type="text" class="form-control" id="name" disabled>
+                              <input type="text" class="input100" id="name" disabled>
                             </div>
                           </div>
-                          <div class="col-md-12">
-                            <div class="form-group">
+                          <div class="col-md-12" style="text-align:center;">
+                            <div class="wrap-input100 validate-input">
                               <label class="bmd-label-floating">Email ID</label>
-                              <input type="email" class="form-control" id="email" disabled>
+                              <input type="email" class="input100" align="middle" id="email" disabled>
                             </div>
                           </div>
                         </div>
                         
                         <div class="row">
                           <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="wrap-input100 validate-input">
                               <label class="bmd-label-floating">OpCo</label>
-                              <input type="text" class="form-control" id="opco">
+                              <input type="text" class="input100" id="opco">
+                              <span class="focus-input100"></span>
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="wrap-input100 validate-input">
                               <label class="bmd-label-floating">Contact Number</label>
-                              <input type="text" class="form-control" id="contact">
+                              <input type="text" class="input100" id="contact" align="right">
+                              <span class="focus-input100"></span>
                             </div>
                           </div>
                           
@@ -177,7 +181,7 @@
                       </a>
                     </div> -->
                     <div class="card-header card-header-primary" style="background-color: #b224ef; z-index: 2; margin-top: -40px;">
-                      <h4 class="card-title">Reset Password</h4>
+                      <h4 class="card-title" style="color: #ffff;">Reset Password</h4>
                       <!-- <p class="card-category"></p> -->
                     </div>
                     <div class="card-body">
@@ -186,15 +190,17 @@
                           <div class="row">
                             
                             <div class="col-md-12">
-                              <div class="form-group">
+                              <div class="wrap-input100 validate-input">
                                 <label class="bmd-label-floating">Enter current password</label>
-                                <input type="password" class="form-control" id="passwd_old">
+                                <input type="password" class="input100" id="passwd_old">
+                                <span class="focus-input100"></span>
                               </div>
                             </div>
                             <div class="col-md-12">
-                              <div class="form-group">
+                              <div class="wrap-input100 validate-input">
                                 <label class="bmd-label-floating">Enter new password</label>
-                                <input type="password" class="form-control" id="passwd_new">
+                                <input type="password" class="input100" id="passwd_new">
+                                <span class="focus-input100"></span>
                               </div>
                             </div>
                           </div>
